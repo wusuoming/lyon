@@ -1,40 +1,35 @@
 package net.slowvic.test.junit;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author xus
+ *
+ */
 public class OperationTest {
 	private Operation op;
 	private int a;
 	private int b;
-
+	
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		op = new Operation();
-		a = 3;
-		b = 2;
+		a = 5;
+		b = 3;
 	}
 
 	@Test
-	public void testAdd() {
-		int expected = 1;
-		Assert.assertEquals(expected, op.minus(a, b));
-	}
-}
-
-class Operation {
-	@SuppressWarnings("unused")
-	private int add(int a, int b) {
-		return a + b;
+	public final void testMinus() {
+		int expected = 2;
+		assertEquals(expected,op.minus(a,b));
 	}
 
-	protected int minus(int a, int b) {
-		return a - b;
-	}
-
-	public int multiply(int a, int b) {
-		return a * b;
+	@Test
+	public final void testMultiply() {
+		int expected = 14;
+		assertEquals(expected,op.multiply(a,b));
 	}
 }
