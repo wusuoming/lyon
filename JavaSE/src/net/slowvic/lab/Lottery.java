@@ -1,7 +1,9 @@
 package net.slowvic.lab;
 
 import java.util.Random;
-
+/**
+ * Ë«É«ÇòÉ¸Ñ¡Ëã·¨
+ */
 class LotterySelect
 {
 	private static final int COUNT = 6;

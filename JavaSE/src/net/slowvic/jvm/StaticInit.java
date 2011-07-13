@@ -1,5 +1,7 @@
 package net.slowvic.jvm;
-
+/**
+ * ²Î¿¼LoadAndInit
+ */
 public class StaticInit 
 {
 	public static void main(String[] args)
