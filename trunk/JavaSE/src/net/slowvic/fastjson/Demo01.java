@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * fastjson 是阿里巴巴的一个开源项目
+ * 提供一个将Object转换为json格式的通用解决方案
+ * 
+ * 本例简单演示转换结果，包含普通类型转换、List转换、Map转换、引用类型转换
+ */
 public class Demo01
 {
 	public static void main(String[] args)

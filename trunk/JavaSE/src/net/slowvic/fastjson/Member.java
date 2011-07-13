@@ -1,5 +1,8 @@
 package net.slowvic.fastjson;
 
+/**
+ * 一个简单的JavaBean，包含String、int和enum实例域
+ */
 public class Member
 {
 	private String name;

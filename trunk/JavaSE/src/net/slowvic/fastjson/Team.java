@@ -4,6 +4,9 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 一个包含了List、Map、Date、boolean的复合JavaBean
+ */
 public class Team
 {
 	private List<Member> members;
