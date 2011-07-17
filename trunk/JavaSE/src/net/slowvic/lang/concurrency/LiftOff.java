@@ -32,7 +32,7 @@ public class LiftOff implements Runnable {
 				Thread.sleep(1000);
 				System.out.println(status());
 			}
-			Thread.yield(); // 不要使用这个方法来终止线程
+			Thread.yield(); // 让步给其他线程，本身不释放锁
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
