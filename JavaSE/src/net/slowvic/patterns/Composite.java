@@ -31,5 +31,6 @@ class Leaf implements Tree{
  * 包含树的一个集合引用
  */
 class Node implements Tree{
+	@SuppressWarnings("unused")
 	private List<Tree> children = new ArrayList<Tree>();
 }
