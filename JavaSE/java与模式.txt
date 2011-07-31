@@ -1,2 +1,1 @@
-模板方法模式（Method Template）：
-观察者模式（Observer）：自身发生变动时，提醒所有观察者进行修改 671
+迭代子模式：（Iterator）743
