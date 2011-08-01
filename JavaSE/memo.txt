@@ -2,4 +2,4 @@
 jQuery实战
 
 迭代子模式（Iterator）：顺序访问一个聚集中的元素而不暴露聚集的内部表象，是对遍历的抽象化
-769
+责任链模式（Chain of Responsibility）：809
