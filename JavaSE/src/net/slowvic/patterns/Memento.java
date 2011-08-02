@@ -19,16 +19,88 @@ package net.slowvic.patterns;
  */
 public class Memento {
 	public static void main(String[] args) {
-
+		Organizer o = new Organizer();
+		Caretaker c = new Caretaker();
+		// 发起人状态为on
+		o.setState("on");
+		// 发起人创建备忘录，负责人保存创建的备忘录
+		c.saveMemo(o.createMemo());
+		// 发起人状态变更为off
+		o.setState("off");
+		// 发起人状态恢复到负责人保存的模式
+		o.restoreMemo(c.retrieveMemo());
+		System.out.println(o.getState());
 	}
 }
 
-class Organizer{
+/**
+ * 备忘录的窄接口
+ * <p>
+ * 此处仅是一个标识接口
+ */
+interface IMemo {
+
+}
+
+/**
+ * 发起人角色
+ */
+class Organizer {
+	// 发起人的状态
 	private String state;
-	
-	public Organizer(){}
-	
-	public IMemo createMemo(){
+
+	// 获取状态
+	public String getState() {
+		return state;
+	}
+
+	// 设置状态
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	// 工厂方法，创建带有窄接口的备忘录
+	public IMemo createMemo() {
 		return new Memo(state);
+	}
+
+	// 恢复到存储的备忘录状态
+	public void restoreMemo(IMemo memo) {
+		Memo aMemo = (Memo) memo;
+		setState(aMemo.getState());
+	}
+
+	// 备忘录，使用内部类实现
+	protected class Memo implements IMemo {
+		private String savedState;
+
+		public Memo(String someState) {
+			savedState = someState;
+		}
+
+		public String getState() {
+			return savedState;
+		}
+
+		public void setState(String savedState) {
+			this.savedState = savedState;
+		}
+	}
+}
+
+/**
+ * 负责人角色
+ */
+class Caretaker {
+	private IMemo memo;
+
+	// 获取存储的备忘录
+	public IMemo retrieveMemo() {
+		return memo;
+	}
+
+	// 存储备忘录
+	public void saveMemo(IMemo memo) {
+		this.memo = memo;
 	}
 }
