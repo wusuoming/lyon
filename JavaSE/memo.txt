@@ -2,4 +2,6 @@
 jQuery实战
 
 迭代子模式（Iterator）：顺序访问一个聚集中的元素而不暴露聚集的内部表象，是对遍历的抽象化
-责任链模式（Chain of Responsibility）：809
+责任链模式（Chain of Responsibility）：
+命令模式（Command）：把一个请求或操作封装到一个对象中。可以撤销和恢复操作。
+备忘录模式（Memento）：备忘录对象是一个存储另一个对象内部状态的快照对象。
