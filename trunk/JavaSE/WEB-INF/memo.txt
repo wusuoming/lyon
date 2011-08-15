@@ -1,6 +1,6 @@
 Ω‚Œˆº´œﬁ±‡≥Ã-”µ±ß±‰ªØ£∫done
 ¥˙¬Î’˚Ω‡÷Æµ¿£∫done
-Javascript»®Õ˛÷∏ƒœ(µ⁄ŒÂ∞Ê)£∫
+Javascript»®Õ˛÷∏ƒœ(µ⁄ŒÂ∞Ê)£∫257“≥
 
 
 
@@ -58,3 +58,14 @@ typeof£¨∑µªÿµƒ «◊÷∑˚¥Æ°£number£¨string£¨boolean£¨object∫Õfunction°£»Áπ˚‘ÀÀ„ ˝Œ¥∂
 
 Objectµƒ Ù–‘∫Õ∑Ω∑®£∫
 constructor£∫“˝”√≥ı ºªØ∏√∂‘œÛµƒππ‘Ï∫Ø ˝
+ ˝◊È”√[ ]£¨∂‘œÛ”√{ }°£ ˝◊Èµƒœ¬±Í±ÿ–Î‘⁄0~2µƒ32¥Œ∑Ω-1÷Æƒ⁄£¨≥¨π˝¥À∑∂Œß‘Ú◊‘∂Ø◊™ªØŒ™◊÷∑˚¥Æ£¨»Áarr[-1]£¨±Ì æarr["-1"]°£
+ π”√Function…˘√˜µƒ∫Ø ˝≤ª◊Ò ÿ¥ ∑®◊˜”√”Ú£¨À¸◊‹ «“ª∏ˆ∂•º∂∫Ø ˝°£
+
+function Circle(radius){
+    this.radius = radius;  // µ¿˝ Ù–‘
+}
+Circle.PI = 3.14159;      //¿‡ Ù–‘
+Circle.prototype.area = function(){return Circle.PI * this.radius * this.radius}          // µ¿˝∑Ω∑®
+Circle.max = function(a,b){if(a.radius>b.radius) return a;else return b;}                  //¿‡∑Ω∑®
+
+apply,call,constructor,prototype
