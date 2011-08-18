@@ -1,6 +1,6 @@
 解析极限编程-拥抱变化：done
 代码整洁之道：done
-Javascript权威指南(第五版)：257页
+Javascript权威指南(第五版)：521页
 
 
 
@@ -69,3 +69,10 @@ Circle.prototype.area = function(){return Circle.PI * this.radius * this.radius}
 Circle.max = function(a,b){if(a.radius>b.radius) return a;else return b;}                  //类方法
 
 apply,call,constructor,prototype
+
+在客户端Javascript中，Window是全局对象，因此下面两条语句是等价的：
+var answer = 42;
+window.answer = 42;
+
+javascript是单线程的。
+所有的句柄都在脚本执行完后才被触发。

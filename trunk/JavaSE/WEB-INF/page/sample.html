@@ -2,12 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="../js/sample.js"></script>
 <script type="text/javascript" src="../js/circle.js"></script>
 <script type="text/javascript" src="../js/rectangle.js"></script>
+<script type="text/javascript" src="../js/bounce.js"></script>
 <title>示例</title>
+<script type="text/javascript">
+function overwriteCurPage(){
+	document.write("当前页面被覆盖");
+}
+$(function(){
+	//如果不包含在$(function(){})中，就必须放到aLink元素后，否则找不到该元素，无法绑定
+	$("#aLink").bind("click",function(){
+		alert(this.innerHTML);
+	})
+})
+</script>
 </head>
 <body>
 <a href="#" onclick="doClick()" style="text-decoration:none">超链接</a>
+<hr>
+<input type="button" value="点击" onclick="overwriteCurPage()" />
+<hr>
+<input type="button" value="开始移动" onclick="bounce.start()" />
+<input type="button" value="停止移动" onclick="bounce.stop()" />
+<hr>
+<a href="#" id="aLink" style="text-decoration:none">点我</a>
+<hr>
+<script>
+	document.write("<p>载入过程中使用document.write()不会导致覆盖");
+</script>
 </body>
 </html>
