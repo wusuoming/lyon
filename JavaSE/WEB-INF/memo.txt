@@ -1,7 +1,4 @@
-解析极限编程-拥抱变化：done
-代码整洁之道：done
-
-
+数据结构与算法分析：第51页
 
 xp(extreme programming) 极限编程：
 
@@ -75,3 +72,11 @@ window.answer = 42;
 
 javascript是单线程的。
 所有的句柄都在脚本执行完后才被触发。
+
+
+数据结构与算法分析
+
+表：ArrayList、LinkedList
+栈：Stack（后进先出）
+队列：Queue（删队头，添队尾）
+二叉查找树：Binary Search Tree（左子树全比当前节点小，右子树全比当前节点大）
