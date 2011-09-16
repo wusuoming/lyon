@@ -1,5 +1,4 @@
-数据结构与算法分析：done(看不懂)
-重构-改善既有代码的设计：
+
 
 xp(extreme programming) 极限编程：
 
@@ -25,7 +24,8 @@ xp(extreme programming) 极限编程：
 代码整洁之道（clean code）：
 
 代码应当具有自解释性，让人一看就懂，为此需要良好的命名，尽可能地减少注释。
-一个方法只做一件事，并将这件事做好。如果方法体内包含了许多步骤，尽可能地将他们分散到其他的各个小方法中。总之应当使代码具有自解释性。这样的代价是会创建出许许多多的小方法。
+一个方法只做一件事，并将这件事做好。如果方法体内包含了许多步骤，尽可能地将他们分散到其他的各个小方法中。总之应当使代码具有自解释性。
+这样的代价是会创建出许许多多的小方法。
 
 类应当具有类聚性：方法不应接收太多的外界数据。
 
@@ -81,3 +81,12 @@ javascript是单线程的。
 栈：Stack（后进先出）
 队列：Queue（删队头，添队尾）
 二叉查找树：Binary Search Tree（左子树全比当前节点小，右子树全比当前节点大）
+
+
+How-Tomcat-Works
+
+Connector模块：创建Request、Response对象，监听用户请求；
+Container模块：处理Request请求，填充Response对象。分为四个等级：Engine、Host、Context、Wrapper。
+Wrapper管理Servlet，Context代表一个Web应用，包含N个Wrapper。
+servlet应该仅仅被允许从WEB-INF/classes及其子目录，和WEB-INF/lib下部署的lib中载入类。
+因此，servlet容器需要一个自定义的loader。
