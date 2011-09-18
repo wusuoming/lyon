@@ -1,5 +1,3 @@
-
-
 xp(extreme programming) 极限编程：
 
 需要客户参与
