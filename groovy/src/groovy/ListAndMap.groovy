@@ -33,3 +33,15 @@ numbers.each {value ->
 hash.each { key,value ->
 	println("${key}:${value}")	
 }
+
+def execite = {value ->
+    return "${value}!!"
+} //闭包是一种对象，可以接受参数
+println execite("groovy")
+println execite.call("Java") //两种调用方式
+
+def sng = new Song(name:"东风破",artist:"周杰伦",genre:"中国风")
+println sng
+
+def sng2 = new Song(name:"Thriller",artist:"Michael Jackson")
+println sng2
