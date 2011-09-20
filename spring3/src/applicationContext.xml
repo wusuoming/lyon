@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans SYSTEM "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="song" class="net.slowvic.springlab.Song">
+		<property name="name">
+			<value>三寸天堂</value>
+		</property>
+		<property name="seconds">
+			<value type="int">279</value>
+		</property>
+		<property name="artist">
+			<ref bean="labArtist"/>
+		</property>
+	</bean>
+	<bean id="labArtist" class="net.slowvic.springlab.Artist">
+		<property name="name">
+			<value>严艺丹</value>
+		</property>
+		<property name="age">
+			<value>27</value>
+		</property>
+	</bean>
+</beans>
