@@ -20,7 +20,7 @@ public class IoCTest {
 	}
 
 	public static ApplicationContext getApplicationContextByClassPath() {
-		// 顾名思义，读取的是classPath下的配置
+		// 顾名思义，读取的是classPath(编译后的文件存放得根目录，如bin，WEB-INF/classes)下的配置
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"springConfig.xml");
 		return context;
