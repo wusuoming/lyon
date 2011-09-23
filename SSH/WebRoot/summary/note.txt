@@ -1,5 +1,5 @@
 Spring揭秘：
-Struts_Hibernate_Spring集成开发宝典：36
+Struts_Hibernate_Spring集成开发宝典：41
 
 
 IOC的职责：

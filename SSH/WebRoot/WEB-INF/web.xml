@@ -7,6 +7,7 @@
 	<welcome-file-list>
 		<welcome-file>/pages/index.html</welcome-file>
 	</welcome-file-list>
+	<!-- Spring监听器配置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/springConfig.xml</param-value>
@@ -14,4 +15,18 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- Struts配置 -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/strutsConfig.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.snow</url-pattern>
+	</servlet-mapping>
 </web-app>
