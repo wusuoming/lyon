@@ -14,6 +14,9 @@ public class RegAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+	    //BookDao bd = new BookDao();
+	    //bd.crud();
+	    request.setAttribute("msg", "欢迎登录");
 		return mapping.findForward("success");
 	}
 }

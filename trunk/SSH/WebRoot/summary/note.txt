@@ -1,3 +1,8 @@
+变3、窃听2、恶老板、绿灯侠
+csi ny、fringe、nikita
+
+因为DataSource是由Servlet容器管理，所以不能直接通过应用程序调试。
+
 Spring揭秘：
 Struts_Hibernate_Spring集成开发宝典：41
 
@@ -5,15 +10,6 @@ Struts_Hibernate_Spring集成开发宝典：41
 IOC的职责：
 1、业务对象的构建管理 -- 依赖的对象如何构建，如何生成
 2、依赖绑定
-
-在web.xml中配置Spring监听器
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/springConfig.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 
 
 Struts的扩展功能：
