@@ -5,7 +5,7 @@
 		<form-bean name="userForm" type="net.slowvic.web.form.UserForm"></form-bean>
 	</form-beans>
 	<action-mappings>
-		<action name="userForm" path="/reg" type="net.slowvic.web.action.RegAction"
+		<action path="/reg" type="net.slowvic.web.action.RegAction"
 			parameter="p" validate="false">
 			<forward name="success" path="/pages/success.jsp"></forward>
 		</action>
