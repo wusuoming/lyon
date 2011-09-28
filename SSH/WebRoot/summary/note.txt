@@ -1,10 +1,9 @@
-变3、窃听2、恶老板、绿灯侠
-csi ny、fringe、nikita
+窃听2、恶老板、绿灯侠、功夫熊猫2
 
 因为DataSource是由Servlet容器管理，所以不能直接通过应用程序调试。
 
 Spring揭秘：
-Struts_Hibernate_Spring集成开发宝典：41
+Struts_Hibernate_Spring集成开发宝典：66
 
 
 IOC的职责：

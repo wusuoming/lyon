@@ -1,0 +1,23 @@
+1.设置系统环境变量：
+JPDA_ADDRESS=8000
+JPDA_TRANSPORT=dt_socket
+说明：端口不是一定要8000，可以是任何没有被占用的端口。
+
+2.修改tomcat启动脚本：
+修改startup.bat文件倒数第2行，增加一个启动参数jpda
+原来为
+call "%EXECUTABLE%" start %CMD_LINE_ARGS%
+修改之后o 
+call "%EXECUTABLE%" jpda start %CMD_LINE_ARGS%
+
+3.禁止你的webapp自动重载(设置reloadable="false"或不设置)，，如
+<Context docBase="D:/IPMS/tjdt/war" reloadable="false" path="/tjdt">
+</Context>
+
+4.启动tomcat
+
+5.在Eclipse中启动远程调试
+在Eclipse中选中你的工程，选择 "Run->Debug..."，选中"Remote Java Applications", 选择左下方"New"，再选择右下方"Debug"。
+说明：如果须设置环境变量用的不是8000端口，则需要把端口设置成与环境变量一致的端口。
+
+6.验证：通过浏览器访问页面，在Eclipse中修改你的类(刚才访问时调用过的类)并保存，再通过浏览器访问，已访问到最新的类，恭喜。
