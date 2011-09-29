@@ -19,4 +19,8 @@
 	</action-mappings>
 	<!-- 资源文件配置，放到classPath下 -->
 	<message-resources parameter="MessageResources"></message-resources>
+	<!-- 插件配置 -->
+	<plug-in className="net.slowvic.web.plugin.AppTimePlugIn">
+		<set-property value="yyyy-MM-dd HH:mm:ss" property="datePattern"/>
+	</plug-in>
 </struts-config>

@@ -19,8 +19,7 @@ public class FileAction extends DispatchAction {
 
 	public ActionForward upload(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		
 		//读取上传文件
 		FileForm fileForm = (FileForm)form;
 		FormFile uploadFile = fileForm.getUploadFile();
@@ -29,7 +28,7 @@ public class FileAction extends DispatchAction {
 		int fileSize = uploadFile.getFileSize();
 		byte[] fileData = uploadFile.getFileData();
 		
-		//保存上传文件到当前目录下
+		//保存上传文件
 		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(fileName));
 		bos.write(fileData);
 		bos.close();
