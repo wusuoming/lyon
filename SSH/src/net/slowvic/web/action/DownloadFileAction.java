@@ -12,12 +12,16 @@ import org.apache.struts.actions.DownloadAction;
 
 public class DownloadFileAction extends DownloadAction {
 
+    /**
+     * 中文文件名会乱码，原因未知
+     */
 	@Override
 	protected StreamInfo getStreamInfo(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String fileName = (String)session.getAttribute("fileName");
 		String contentType = (String)session.getAttribute("contentType");
+		response.setContentType("application/octet-stream;charset=UTF-8");
 		response.setHeader("Content-disposition", "attachment;fileName="+fileName);
 		File file = new File(fileName);
 		return new FileStreamInfo(contentType, file);
