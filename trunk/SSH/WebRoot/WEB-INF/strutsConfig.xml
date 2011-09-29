@@ -3,11 +3,18 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="userForm" type="net.slowvic.web.form.UserForm"></form-bean>
+		<form-bean name="fileForm" type="net.slowvic.web.form.FileForm"></form-bean>
 	</form-beans>
 	<action-mappings>
 		<action path="/reg" type="net.slowvic.web.action.RegAction"
 			parameter="p" validate="false">
 			<forward name="success" path="/pages/success.jsp"></forward>
+		</action>
+		<action name="fileForm" path="/file"
+			type="net.slowvic.web.action.FileAction" parameter="p" validate="false">
+			<forward name="download" path="/pages/download.jsp"></forward>
+		</action>
+		<action path="/download" type="net.slowvic.web.action.DownloadFileAction">
 		</action>
 	</action-mappings>
 	<!-- 资源文件配置，放到classPath下 -->
