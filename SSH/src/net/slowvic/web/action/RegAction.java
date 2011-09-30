@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.slowvic.web.dao.BookDao;
 import net.slowvic.web.domainmodal.User;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -27,8 +28,8 @@ public class RegAction extends DispatchAction {
     public ActionForward success(ActionMapping mapping, ActionForm form,
         HttpServletRequest request, HttpServletResponse response)
         throws Exception {
-        // BookDao bd = new BookDao();
-        // bd.crud();
+        BookDao bd = new BookDao();
+        bd.crud();
         request.setAttribute("msg", "欢迎登录");
         return mapping.findForward("success");
     }
