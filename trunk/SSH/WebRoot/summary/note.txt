@@ -2,12 +2,11 @@
 
 问题：不使用ActionForm，复选框的初始状态如何设置？
 	  Token的使用，如果大量使用，该如何精简代码？
-	  下载时，中文文件名乱码。
 
-因为DataSource是由Servlet容器管理，所以不能直接通过应用程序调试。
+DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
 Spring揭秘：
-Struts_Hibernate_Spring集成开发宝典：236
+Struts_Hibernate_Spring集成开发宝典：250
 
 
 IOC的职责：
@@ -23,3 +22,5 @@ Struts的扩展功能：
 5、Struts Scripting 脚本支持 如Groovy
 
 如果Web容器支持的Servlet版本在2.3以上，就不需要在web.xml中配置标签库，直接在页面上引用即可。
+
+当表单中包含上传文件时，不能使用request.getParameter()来获取参数值。

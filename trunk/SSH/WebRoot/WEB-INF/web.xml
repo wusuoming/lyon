@@ -29,6 +29,15 @@
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.snow</url-pattern>
 	</servlet-mapping>
+	<!-- 下载 -->
+	<servlet>
+		<servlet-name>download</servlet-name>
+		<servlet-class>net.slowvic.web.servlet.DownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>download</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
 	<!-- 引用DataSource -->
 	<resource-ref>
 		<description>mysql snow db connection</description>
@@ -48,4 +57,12 @@
 		<filter-name>CharsetFilter</filter-name>
 		<url-pattern>*.snow</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CharsetFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pages/errors/notFound.jsp</location>
+	</error-page>
 </web-app>

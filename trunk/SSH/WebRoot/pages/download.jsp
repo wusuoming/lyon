@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>下载</title>
 </head>
-	<html:link action="/download">下载</html:link><br>
-	<html:link action="/file.snow?p=open">打开</html:link><br>
+<div align="center">
+	<html:link action="/download.snow?fileName=冰与火之歌.xls">下载</html:link><br>
+	<a href="/download.do?fileName=冰与火之歌.xls">download</a>
+</div>
 </body>
 </html>
