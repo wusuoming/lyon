@@ -9,6 +9,8 @@ import net.slowvic.web.dao.BookDao;
 import net.slowvic.web.domainmodal.User;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -24,12 +26,16 @@ import org.jdom.output.XMLOutputter;
  * <p>
  */
 public class RegAction extends DispatchAction {
+    
+    private static Log log = LogFactory.getLog(RegAction.class);
 
     public ActionForward success(ActionMapping mapping, ActionForm form,
         HttpServletRequest request, HttpServletResponse response)
         throws Exception {
         BookDao bd = new BookDao();
+        log.debug("开始crud操作.");
         bd.crud();
+        log.debug("crud操作完成.");
         request.setAttribute("msg", "欢迎登录");
         return mapping.findForward("success");
     }
@@ -37,6 +43,7 @@ public class RegAction extends DispatchAction {
     public ActionForward reg(ActionMapping mapping, ActionForm form,
         HttpServletRequest request, HttpServletResponse response)
         throws Exception {
+        form.validate(mapping, request);
         User user = new User();
         //将表单数据copy到模型类User中
         BeanUtils.copyProperties(user, request.getParameterMap());

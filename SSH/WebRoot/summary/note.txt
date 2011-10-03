@@ -1,4 +1,4 @@
-窃听2、恶老板、绿灯侠、功夫熊猫2
+窃听2、绿灯侠、功夫熊猫2
 
 问题：不使用ActionForm，复选框的初始状态如何设置？
 	  Token的使用，如果大量使用，该如何精简代码？
@@ -6,7 +6,7 @@
 DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
 Spring揭秘：
-Struts_Hibernate_Spring集成开发宝典：250
+Struts_Hibernate_Spring集成开发宝典：395
 
 
 IOC的职责：
@@ -24,3 +24,32 @@ Struts的扩展功能：
 如果Web容器支持的Servlet版本在2.3以上，就不需要在web.xml中配置标签库，直接在页面上引用即可。
 
 当表单中包含上传文件时，不能使用request.getParameter()来获取参数值。
+
+Tiles：参考 精通Struts 第16章
+
+
+Hibernate
+配置，参考Struts_Hibernate_Spring集成开发宝典300~306页
+
+三大组件：
+连接管理组件 连接池 管理数据库连接
+事务管理组件
+O/R映射组件 对象-表字段之间的转换
+
+SessionFactory：保存当前数据库配置的所有映射关系。初始化极其复杂，极其耗资源。因此应当将其设置为线程安全的单例。
+并为事务之间可重用的数据提供二级缓存。是Session的工厂类。
+Session：所有持久化操作的上下文环境，持有对数据库的连接；是Transaction工厂；对持久化对象提供一级缓存。
+Transaction：由Session管理，一个Session中可以包含多个Transaction。
+ConnectionProvider：生成相关JDBC对象，并提供连接缓冲池，将底层的DataSource和DriverManager隔离。
+
+Transient：与数据库中的数据没有任何关系，没有与Session关联过，没有持久化标识符。
+Persistent：与Session相关联，被Session管理，与数据库中的记录相对应。
+			Transient可以通过保存操作转换为Persistent，通过Session查询得到的也是Persistent。
+			在Session有效期间，任何对Persistent对象的修改都将同步到数据库，不需显式执行修改操作。
+Detached：当Persistent对象不再与Session关联时即成为Detached，一般是在Session关闭后转换而成。
+		  Detached对象虽然也在数据库中存在对应记录，但对Detached对象的修改不会反映到数据库中。
+
+判断Transient对象：没有id；id为映射文件中配置的unsaved-value；
+				   设置了version并且version为空，或者version值为unsaved-value；
+				   设置了Interceptor，并且Interceptor的isUnsaved()方法返回true。
+
