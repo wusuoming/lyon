@@ -27,7 +27,7 @@ public class DownloadServlet extends HttpServlet {
 		String fileName = req.getParameter("fileName");
 		resp.setContentType("application/x-msdownload");
 		resp.setHeader("Content-Disposition", "attachment;fileName="
-				+ new String(fileName.getBytes("gbk"), "8859_1"));
+				+ new String(fileName.getBytes("gbk"), "iso8859-1"));
 		// 该处使用字节流，如使用字符流会乱码
 		ServletOutputStream sos = resp.getOutputStream();
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(
