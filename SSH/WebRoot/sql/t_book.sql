@@ -10,16 +10,16 @@ Target Server Type    : MYSQL
 Target Server Version : 50511
 File Encoding         : 65001
 
-Date: 2011-09-29 22:04:15
+Date: 2011-10-04 22:55:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `book`
+-- Table structure for `t_book`
 -- ----------------------------
-DROP TABLE IF EXISTS `book`;
-CREATE TABLE `book` (
+DROP TABLE IF EXISTS `t_book`;
+CREATE TABLE `t_book` (
   `id` varchar(8) NOT NULL,
   `author` varchar(32) DEFAULT NULL,
   `title` varchar(64) NOT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of book
+-- Records of t_book
 -- ----------------------------
-INSERT INTO `book` VALUES ('201', '孙卫琴', 'Java面向对象编程', '65.00', '2006', '让读者由浅入深了解Java语言', '20000');
-INSERT INTO `book` VALUES ('202', '孙卫琴', '精通Struts', '49.00', '2004', '真的很棒', '80000');
-INSERT INTO `book` VALUES ('203', '孙卫琴', 'Java网络编程精解', '55.00', '2007', '值得一看', '10000');
+INSERT INTO `t_book` VALUES ('201', '孙卫琴', 'Java面向对象编程', '65.00', '2006', '让读者由浅入深了解Java语言', '20000');
+INSERT INTO `t_book` VALUES ('202', '孙卫琴', '精通Struts', '49.00', '2004', '真的很棒', '80000');
+INSERT INTO `t_book` VALUES ('203', '孙卫琴', 'Java网络编程精解', '55.00', '2007', '值得一看', '10000');

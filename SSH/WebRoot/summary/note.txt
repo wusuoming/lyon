@@ -1,12 +1,22 @@
-窃听2、绿灯侠、功夫熊猫2
+窃听2，功夫熊猫2
+
+
+Struts-Hibernate-Spring学习
+Struts_Hibernate_Spring集成开发宝典：496
+Tomcat与JavaWeb：done
+精通struts.基于MVC的.java.web设计与开发：done
+深入浅出Hibernate：22
+Hibernate实战第二版：
+Spring揭秘：
+Spring攻略：
+Spring Live：
+
 
 问题：不使用ActionForm，复选框的初始状态如何设置？
 	  Token的使用，如果大量使用，该如何精简代码？
 
-DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
-Spring揭秘：
-Struts_Hibernate_Spring集成开发宝典：395
+DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
 
 IOC的职责：
@@ -29,7 +39,7 @@ Tiles：参考 精通Struts 第16章
 
 
 Hibernate
-配置，参考Struts_Hibernate_Spring集成开发宝典300~306页
+配置文件，参考Struts_Hibernate_Spring集成开发宝典300~306页；映射文件，参考430~页
 
 三大组件：
 连接管理组件 连接池 管理数据库连接
@@ -45,7 +55,7 @@ ConnectionProvider：生成相关JDBC对象，并提供连接缓冲池，将底�
 Transient：与数据库中的数据没有任何关系，没有与Session关联过，没有持久化标识符。
 Persistent：与Session相关联，被Session管理，与数据库中的记录相对应。
 			Transient可以通过保存操作转换为Persistent，通过Session查询得到的也是Persistent。
-			在Session有效期间，任何对Persistent对象的修改都将同步到数据库，不需显式执行修改操作。
+			在Session有效期间，任何对Persistent对象的修改都将同步到数据库，不需显式执行修改操作(必须在事务中)。
 Detached：当Persistent对象不再与Session关联时即成为Detached，一般是在Session关闭后转换而成。
 		  Detached对象虽然也在数据库中存在对应记录，但对Detached对象的修改不会反映到数据库中。
 
@@ -53,3 +63,54 @@ Detached：当Persistent对象不再与Session关联时即成为Detached，一�
 				   设置了version并且version为空，或者version值为unsaved-value；
 				   设置了Interceptor，并且Interceptor的isUnsaved()方法返回true。
 
+get与load的区别：
+记录不存在时，get返回null，load抛出HibernateException；
+get永远直接返回实体对象，load可能返回的是实体对象的代理对象；
+如果在内部缓存中没有找到相关数据，get将查询数据库，load则会继续在二级缓存中查找，然后再看是否需要查询数据库。
+
+Query的几个方法：
+list 直接返回实体对象的List；iterator 返回代理，用到的时候才取实体对象；uniqueResult 确定查询结果只有一个时使用。
+
+O/R映射：
+关联 一对一、一对多、多对一、多对多 inverse=false 主控方
+继承（注意查询时的多态性）
+每个具体类一张表，这种方式实际无视了继承关系；union-subclass，父类与子类的相同字段的名称必须保持一致；
+每个类分层结构一张表，子类使用同一张表，通过字段区分子类；sub-class，通过discriminator来区分子类
+缺点：某个子类特有的字段不能设置非空，否则其他子类持久化时会报异常
+每个子类一张表，通过外键关系来描述继承关系；父类的字段在父类表中，子类的字段在子类表中，和对象的继承很类似。
+<joined-class>
+
+inverse和cascade：
+inverse只存在于集合中，Hibernate支持的集合有<set>、<list>、<map>、<bag>、<array>；
+它的作用是是否将对集合的修改反映到数据库中，等于false的时候表示要反映，默认为false；
+cascade级联同数据库中的cascade，一般不建议使用。
+
+更新丢失（lost update）：两个事务同时更新一个数据，但第二个事务更新失败，导致两个操作造成的更新都丢失；
+脏读（dirty reads）：一个事务正在更新数据，但还没有提交，另一个事务在此时读取该数据；
+不可重复读（Non-repeatable reads）：两个事务重复两次读取数据，结果却不同，因为中间有其他事务对数据做了更新；
+幻读（Phantom reads）：事务在操作过程中进行两次查询，第二次得到的结果中包含了第一次没有的记录。
+					  （不要求sql语句相同）因为中间有其他事务进行了新增。
+
+隔离级别
+Read Uncommitted：允许脏读，但不允许更新丢失。不允许两个事务同时写，但允许其他事务同时读。可通过“排他写锁”实现。
+Read Committed：允许不可重复读，但不允许脏读。读事务允许其他事务访问该行，未提交的写事务不允许其他事务访问。
+				通过“瞬间共享读锁”和“排他写锁”实现。
+Repeatable Read：禁止不可重复读和脏读，但可能会出现幻读。读事务允许读事务但禁止写事务，写事务禁止其他事务。
+				 可通过“共享读锁”和“排他写锁”实现。
+Serialzable：事务序列化执行。无法仅仅通过行级锁实现。
+
+Hibernate缓存
+一级缓存：由Session管理，当Session被关闭时缓存被清空；使用的是Map，其中id为key，实体对象为value；
+不能对其进行配置，但可以操作，如evict()将某对象从缓存中清除，clear()清空所有缓存；
+SessionFactory也提供了缓存机制，分为内置缓存和外置缓存。
+其中，内置缓存存放映射元数据及预定义sql语句，元数据是映射文件中数据的副本，sql语句由元数据推导而来。
+内置缓存是只读的。
+外置缓存即二级缓存，是一个可配置的插件，默认不开启。实现原理与一级缓存相同，缓存的数据是数据库数据的副本。
+二级缓存工作机制：
+执行各种条件查询时，如果查询结果是实体集，将实体按id存入缓存；
+当按id查询时，先在一级缓存、二级缓存中查找，如无结果则查询数据库然后将查询结果存入缓存；
+执行增删改操作时同步更新缓存；
+特别注意：缓存中的数据不能通过第三方方式修改。
+比如直接通过JDBC，如果这样操作，Hibernate无法知道数据已修改，也就无法保证缓存与数据库数据的一致性。
+
+抓取策略
