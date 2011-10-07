@@ -5,11 +5,14 @@ Struts-Hibernate-Spring学习
 Struts_Hibernate_Spring集成开发宝典：496
 Tomcat与JavaWeb：done
 精通struts.基于MVC的.java.web设计与开发：done
-深入浅出Hibernate：22
+深入浅出Hibernate：done
 Hibernate实战第二版：
+Hibernate3.6_reference：
 Spring揭秘：
 Spring攻略：
 Spring Live：
+GlassFish:
+iBatis:
 
 
 问题：不使用ActionForm，复选框的初始状态如何设置？
@@ -113,4 +116,23 @@ SessionFactory也提供了缓存机制，分为内置缓存和外置缓存。
 特别注意：缓存中的数据不能通过第三方方式修改。
 比如直接通过JDBC，如果这样操作，Hibernate无法知道数据已修改，也就无法保证缓存与数据库数据的一致性。
 
-抓取策略
+联合查询与fetch
+主要是内连接和左连接，右连接无法使用fetch，全连接很少使用。
+
+关联数据的加载
+即时加载：实体加载完成后立即抓取关联数据；
+延迟加载：关联数据在使用时才加载；
+预先加载：使用外连接同时抓取实体数据和关联数据；
+批量加载：可对即时加载和延迟加载进行性能优化。原理：合并Session中同类型的查询语句。
+
+锁模式
+LockMode.NONE：内部使用，无锁；LockMode.WRITE：内部锁，insert和update时自动获取；
+LockMode.READ：内部锁，读取记录时自动获取；LockMode.UPGRADE：使用数据库的for update子句加锁；
+LockMode.UPGRADE_NOWAIT：Oracle的特定实现，for update nowait子句；
+乐观锁：推荐使用version版本号
+
+Lifecycle与Validatable
+Lifecycle在CRUD操作前都增加了回调，Validatable对实体进行校验。但都需要POJO实现该接口，带有侵入性；
+
+Interceptor
+sessionFactory.openSession(interceptor);
