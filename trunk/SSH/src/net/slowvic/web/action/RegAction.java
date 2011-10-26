@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.slowvic.web.dao.BookDao;
+import net.slowvic.web.domainmodal.Artist;
 import net.slowvic.web.domainmodal.User;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -18,6 +19,8 @@ import org.apache.struts.actions.DispatchAction;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.XMLOutputter;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * 继承DispatchAction。注意不要Override掉execute方法。
@@ -36,8 +39,15 @@ public class RegAction extends DispatchAction {
         log.debug("开始crud操作.");
         bd.crud();
         log.debug("crud操作完成.");
+        Artist artist = getApplicationContext(request).getBean(Artist.class);
+        log.debug(artist.getAge());
         request.setAttribute("msg", "欢迎登录");
         return mapping.findForward("success");
+    }
+
+    public WebApplicationContext getApplicationContext(
+        HttpServletRequest request) {
+        return WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
     }
 
     public ActionForward reg(ActionMapping mapping, ActionForm form,

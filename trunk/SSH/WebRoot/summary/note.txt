@@ -1,18 +1,19 @@
 窃听2，功夫熊猫2
 
 
-Struts-Hibernate-Spring学习
+学习计划--
 Struts_Hibernate_Spring集成开发宝典：496
 Tomcat与JavaWeb：done
 精通struts.基于MVC的.java.web设计与开发：done
 深入浅出Hibernate：done
 Hibernate实战第二版：
-Hibernate3.6_reference：
+Hibernate3.6_reference：done
 Spring揭秘：
 Spring攻略：
-Spring Live：
 GlassFish:
 iBatis:
+OSGI:
+Ralasafe:
 
 
 问题：不使用ActionForm，复选框的初始状态如何设置？
