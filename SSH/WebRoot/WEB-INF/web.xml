@@ -10,10 +10,14 @@
 	<!-- Spring监听器配置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/springConfig.xml</param-value>
+		<param-value>/WEB-INF/spring-conf.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 为使用request级别以上的bean作用域的监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 	<!-- Struts配置 -->
 	<servlet>

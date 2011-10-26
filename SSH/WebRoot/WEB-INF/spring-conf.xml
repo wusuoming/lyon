@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+		
+	<aop:config proxy-target-class="true">
+		<aop:aspect id="LogAspect" ref="logAspect">
+			<aop:pointcut expression="execution(* display*(..)) and args(style,..)" id="logPointcut"/>
+			<aop:before method="beginLog" pointcut-ref="logPointcut" arg-names="style"/>
+			<aop:after method="endLog" pointcut-ref="logPointcut" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="song" class="net.slowvic.web.domainmodal.Song" >
+		<property name="name">
+			<value>三寸天堂</value>
+		</property>
+		<property name="seconds">
+			<value type="int">279</value>
+		</property>
+		<property name="artist">
+			<ref bean="labArtist" />
+		</property>
+	</bean>
+	<bean id="labArtist" class="net.slowvic.web.domainmodal.Artist" >
+		<property name="name">
+			<value>严艺丹</value>
+		</property>
+		<property name="age">
+			<value>27</value>
+		</property>
+	</bean>
+	<bean id="logAspect" class="net.slowvic.web.biz.LogAspect" />
+</beans>
