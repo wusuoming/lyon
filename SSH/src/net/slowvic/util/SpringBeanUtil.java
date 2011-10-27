@@ -10,4 +10,8 @@ public class SpringBeanUtil {
 	public static <T> T getBean(Class<T> clz) {
 		return applicationContext.getBean(clz);
 	}
+	
+	public static ApplicationContext getApplicationContext(){
+		return applicationContext;
+	}
 }

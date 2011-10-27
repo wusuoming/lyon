@@ -5,7 +5,7 @@ Tomcat与JavaWeb：done
 深入浅出Hibernate：done
 Hibernate实战第二版：
 Hibernate3.6_reference：done
-Spring揭秘：63
+Spring揭秘：109
 Spring攻略：
 Spring_reference：
 GlassFish:
@@ -15,11 +15,6 @@ Ralasafe:
 
 
 DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
-
-
-IOC的职责：
-1、业务对象的构建管理 -- 依赖的对象如何构建，如何生成
-2、依赖绑定
 
 
 Struts的扩展功能：
@@ -138,6 +133,7 @@ Spring
 
 bean的作用域：singleton（单例），prototype（每次一个新实例，spring不负责管理生命周期），request（每个request范围内一个实例），session，global session。
 后三者只能在web环境下使用，需要在web.xml中配置RequestContextListener监听器。
+FactoryBean：扩展容器实例化对象的接口
 
 Aspect 切面：对关注点的模块化处理，是切入点和增强的结合体。
 Join Point 连接点：程序执行过程中某个特定的执行点。

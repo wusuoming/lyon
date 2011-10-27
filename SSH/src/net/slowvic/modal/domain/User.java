@@ -12,6 +12,7 @@ public class User implements Serializable {
     private String password;
     private String email;
     private String[] favorites;
+    private Address address;
 
     public String getUserName() {
         return userName;
@@ -60,4 +61,12 @@ public class User implements Serializable {
     public void setFavorites(String[] favorites) {
         this.favorites = favorites;
     }
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 }

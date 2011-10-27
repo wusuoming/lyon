@@ -6,8 +6,10 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 		
+	<!-- 引入aspectj -->
 	<aop:aspectj-autoproxy/>
 	
+	<!-- aop配置 -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="LogAspect" ref="logAspect">
 			<aop:pointcut expression="execution(* display*(..)) and args(style,..)" id="logPointcut"/>
@@ -16,7 +18,7 @@
 		</aop:aspect>
 	</aop:config>
 
-	<bean id="song" class="net.slowvic.web.domainmodal.Song" >
+	<bean id="song" class="net.slowvic.modal.domain.Song" >
 		<property name="name">
 			<value>三寸天堂</value>
 		</property>
@@ -27,7 +29,7 @@
 			<ref bean="labArtist" />
 		</property>
 	</bean>
-	<bean id="labArtist" class="net.slowvic.web.domainmodal.Artist" >
+	<bean id="labArtist" class="net.slowvic.modal.domain.Artist" >
 		<property name="name">
 			<value>严艺丹</value>
 		</property>
@@ -35,6 +37,20 @@
 			<value>27</value>
 		</property>
 	</bean>
-	<bean id="logAspect" class="net.slowvic.web.biz.LogAspect" />
-	<bean id="logAspectTwo" class="net.slowvic.web.biz.LogAspectTwo" />
+	<bean id="slowUser" class="net.slowvic.modal.domain.User">
+		<!-- 注意address的类型是Address，由slowAddressFactory实例化 -->
+		<property name="address" ref="slowAddressFactory" />
+	</bean>
+	<bean id="slowAddressFactory" class="net.slowvic.modal.bean.AddressFactoryBean" />
+	<bean id="logAspect" class="net.slowvic.biz.aspect.LogAspect" />
+	<bean id="logAspectTwo" class="net.slowvic.biz.aspect.LogAspectTwo" />
+	
+	<!-- 为ApplicationContext绑定ResourceBundle，注意id必须是messageSource -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>MessageResources</value>
+			</list>
+		</property>
+	</bean>
 </beans>
