@@ -41,6 +41,6 @@ public class Song {
     }
     
     public void showTime(){
-    	System.out.println("哦一哟");
+    	System.out.println("哦咦哟");
     }
 }
