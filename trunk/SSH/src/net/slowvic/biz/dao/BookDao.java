@@ -1,4 +1,4 @@
-package net.slowvic.web.dao;
+package net.slowvic.biz.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

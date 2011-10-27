@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 		
+	<aop:aspectj-autoproxy/>
+	
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="LogAspect" ref="logAspect">
 			<aop:pointcut expression="execution(* display*(..)) and args(style,..)" id="logPointcut"/>
@@ -34,4 +36,5 @@
 		</property>
 	</bean>
 	<bean id="logAspect" class="net.slowvic.web.biz.LogAspect" />
+	<bean id="logAspectTwo" class="net.slowvic.web.biz.LogAspectTwo" />
 </beans>

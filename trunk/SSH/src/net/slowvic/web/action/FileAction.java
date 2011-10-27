@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.slowvic.web.form.FileForm;
+import net.slowvic.web.actionform.FileForm;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
