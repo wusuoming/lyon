@@ -1,23 +1,17 @@
-窃听2，功夫熊猫2
-
-
 学习计划--
-Struts_Hibernate_Spring集成开发宝典：496
+Struts_Hibernate_Spring集成开发宝典：567
 Tomcat与JavaWeb：done
 精通struts.基于MVC的.java.web设计与开发：done
 深入浅出Hibernate：done
 Hibernate实战第二版：
 Hibernate3.6_reference：done
-Spring揭秘：
+Spring揭秘：63
 Spring攻略：
+Spring_reference：
 GlassFish:
 iBatis:
 OSGI:
 Ralasafe:
-
-
-问题：不使用ActionForm，复选框的初始状态如何设置？
-	  Token的使用，如果大量使用，该如何精简代码？
 
 
 DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
@@ -43,7 +37,8 @@ Tiles：参考 精通Struts 第16章
 
 
 Hibernate
-配置文件，参考Struts_Hibernate_Spring集成开发宝典300~306页；映射文件，参考430~页
+配置文件，参考Struts_Hibernate_Spring集成开发宝典300~306页或者reference46~53页；映射文件，参考430~页
+JNDI：java:/comp/env/*
 
 三大组件：
 连接管理组件 连接池 管理数据库连接
@@ -137,3 +132,14 @@ Lifecycle在CRUD操作前都增加了回调，Validatable对实体进行校验�
 
 Interceptor
 sessionFactory.openSession(interceptor);
+
+
+Spring
+
+bean的作用域：singleton（单例），prototype（每次一个新实例，spring不负责管理生命周期），request（每个request范围内一个实例），session，global session。
+后三者只能在web环境下使用，需要在web.xml中配置RequestContextListener监听器。
+
+Aspect 切面：对关注点的模块化处理，是切入点和增强的结合体。
+Join Point 连接点：程序执行过程中某个特定的执行点。
+Point Cut 切入点：匹配连接点的一种模式、结构。Spring支持的切入点类型参考开发宝典553页。
+Advice 增强：在某个切入点所执行的代码。包括around、before、after等。

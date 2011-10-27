@@ -1,4 +1,4 @@
-package net.slowvic.web.biz;
+package net.slowvic.biz.aspect;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -5,9 +5,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.slowvic.web.dao.BookDao;
-import net.slowvic.web.domainmodal.Artist;
-import net.slowvic.web.domainmodal.User;
+import net.slowvic.biz.dao.BookDao;
+import net.slowvic.modal.domain.Artist;
+import net.slowvic.modal.domain.User;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;

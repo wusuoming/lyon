@@ -1,4 +1,4 @@
-package net.slowvic.web.domainmodal;
+package net.slowvic.modal.domain;
 
 import java.io.Serializable;
 

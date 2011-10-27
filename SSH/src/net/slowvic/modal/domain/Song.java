@@ -1,4 +1,4 @@
-package net.slowvic.web.domainmodal;
+package net.slowvic.modal.domain;
 
 
 /**
@@ -38,5 +38,9 @@ public class Song {
 
     public String display(String style) {
         return artist.getName() + "正在演奏" + name+",风格为"+style;
+    }
+    
+    public void showTime(){
+    	System.out.println("哦一哟");
     }
 }

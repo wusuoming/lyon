@@ -1,4 +1,4 @@
-package net.slowvic.web.form;
+package net.slowvic.web.actionform;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.upload.FormFile;
