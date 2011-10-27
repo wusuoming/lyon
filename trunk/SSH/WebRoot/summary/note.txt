@@ -3,16 +3,16 @@ Struts_Hibernate_Spring集成开发宝典：567
 Tomcat与JavaWeb：done
 精通struts.基于MVC的.java.web设计与开发：done
 深入浅出Hibernate：done
-Hibernate实战第二版：
+Hibernate实战第二版：done
 Hibernate3.6_reference：done
-Spring揭秘：109
+Spring揭秘：144
 Spring攻略：
 Spring_reference：
 GlassFish:
 iBatis:
 OSGI:
 Ralasafe:
-
+shiro:
 
 DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
