@@ -1,19 +1,3 @@
-学习计划--
-Struts_Hibernate_Spring集成开发宝典：567
-Tomcat与JavaWeb：done
-精通struts.基于MVC的.java.web设计与开发：done
-深入浅出Hibernate：done
-Hibernate实战第二版：done
-Hibernate3.6_reference：done
-Spring揭秘：144
-Spring攻略：
-Spring_reference：
-GlassFish:
-iBatis:
-OSGI:
-Ralasafe:
-shiro:
-
 DataSource由Servlet容器管理，所需的数据库jar包需要放到容器的classPath下，并且不能直接通过应用程序调试。
 
 
@@ -139,3 +123,19 @@ Aspect 切面：对关注点的模块化处理，是切入点和增强的结合�
 Join Point 连接点：程序执行过程中某个特定的执行点。
 Point Cut 切入点：匹配连接点的一种模式、结构。Spring支持的切入点类型参考开发宝典553页。
 Advice 增强：在某个切入点所执行的代码。包括around、before、after等。
+
+aspectJ形式的Pointcut 参考spring揭秘213页 可以使用的通配符为*和..
+
+Spring事务管理：
+PlatformTransactionManager,TransactionDefinition(隔离性、传播性),TransactionStatus(完成、回滚、只读)
+
+
+
+
+
+
+
+
+
+
+
