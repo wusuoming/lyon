@@ -128,7 +128,7 @@ aspectJ形式的Pointcut 参考spring揭秘213页 可以使用的通配符为*�
 
 Spring事务管理：
 PlatformTransactionManager,TransactionDefinition(隔离性、传播性),TransactionStatus(完成、回滚、只读)
-
+使用<aop:config>或者<aspectj>来配置时，似乎只能使用cglib来代理。另：不要直接对DAO代理，因为引用了很多final方法。
 
 
 

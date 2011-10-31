@@ -12,7 +12,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class AopTest {
 
     public static void main(String[] args) {
-        JdbcTemplate jdbcTemplate = SpringBeanUtil.getBean(JdbcTemplate.class);
+        aop();
+    }
+
+	public static void useJdbcTemplate() {
+		JdbcTemplate jdbcTemplate = SpringBeanUtil.getBean(JdbcTemplate.class);
         List<Map<String, Object>> resultList = jdbcTemplate
             .queryForList("select * from t_message");
         for (Map<String, Object> resultMap : resultList) {
@@ -20,7 +24,7 @@ public class AopTest {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
         }
-    }
+	}
 
     public static void aop() {
         Song song = SpringBeanUtil.getBean(Song.class);

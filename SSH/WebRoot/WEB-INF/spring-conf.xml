@@ -10,7 +10,6 @@
 	<aop:aspectj-autoproxy/>
 	
 	<!-- aop配置 -->
-	<!-- 
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="LogAspect" ref="logAspect">
 			<aop:pointcut expression="execution(* display*(..)) and args(style,..)" id="logPointcut"/>
@@ -18,7 +17,6 @@
 			<aop:after method="endLog" pointcut-ref="logPointcut" />
 		</aop:aspect>
 	</aop:config>
-	 -->
 
 	<bean id="song" class="net.slowvic.modal.domain.Song" >
 		<property name="name">
