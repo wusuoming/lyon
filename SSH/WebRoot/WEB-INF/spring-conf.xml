@@ -53,4 +53,6 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean class="net.slowvic.util.WebBeanUtil" />
 </beans>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.slowvic.biz.dao.BookDao;
 import net.slowvic.modal.domain.Artist;
 import net.slowvic.modal.domain.User;
+import net.slowvic.util.WebBeanUtil;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
@@ -35,11 +36,12 @@ public class RegAction extends DispatchAction {
     public ActionForward success(ActionMapping mapping, ActionForm form,
         HttpServletRequest request, HttpServletResponse response)
         throws Exception {
+        // http://localhost:2046/reg.snow?p=success
         BookDao bd = new BookDao();
         log.debug("开始crud操作.");
         bd.crud();
         log.debug("crud操作完成.");
-        Artist artist = getApplicationContext(request).getBean(Artist.class);
+        Artist artist = WebBeanUtil.getApplicationContext().getBean(Artist.class);
         log.debug(artist.getAge());
         request.setAttribute("msg", "欢迎登录");
         return mapping.findForward("success");
