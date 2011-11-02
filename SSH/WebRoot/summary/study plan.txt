@@ -11,13 +11,13 @@ java编程思想第四版：done
 java与模式：done
 解析极限编程-拥抱变化：done
 代码整洁之道：done
-Struts_Hibernate_Spring集成开发宝典：648
+Struts_Hibernate_Spring集成开发宝典：done
 Tomcat与JavaWeb：done
 精通struts.基于MVC的.java.web设计与开发：done
 深入浅出Hibernate：done
 Hibernate实战第二版：done
 Hibernate3.6_reference：done
-Spring揭秘：267
+Spring揭秘：402
 Spring攻略：
 GlassFish:
 iBatis:
