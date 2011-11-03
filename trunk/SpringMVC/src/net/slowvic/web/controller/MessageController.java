@@ -9,12 +9,11 @@ import net.slowvic.biz.MessageService;
 import net.slowvic.model.bo.Message;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-public class MessageController extends AbstractController {
+public class MessageController extends MultiActionController {
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request,
+	public ModelAndView list(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		List<Message> messages = getApplicationContext().getBean(
 				MessageService.class).getMessages();
@@ -22,4 +21,5 @@ public class MessageController extends AbstractController {
 		modelAndView.addObject("messages", messages);
 		return modelAndView;
 	}
+
 }

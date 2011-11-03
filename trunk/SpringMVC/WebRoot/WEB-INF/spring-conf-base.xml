@@ -16,5 +16,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<bean id="messageService" class="net.slowvic.biz.MessageServiceMock" />
+	<bean id="userService" class="net.slowvic.biz.UserServiceMock" />
 
 </beans>
