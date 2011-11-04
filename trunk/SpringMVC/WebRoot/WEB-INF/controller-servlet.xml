@@ -15,6 +15,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
+	<context:component-scan base-package="net.slowvic.web" />
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="order" value="1" />
 		<property name="mappings">
@@ -37,8 +38,5 @@
 	<bean id="paramMethodNameResolver"
 		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 		<property name="paramName" value="p" />
-	</bean>
-	<bean id="userController" class="net.slowvic.web.controller.UserController">
-		<property name="commandClass" value="net.slowvic.model.bo.User" />
 	</bean>
 </beans>
