@@ -8,24 +8,25 @@ import net.slowvic.util.SpringBeanUtil;
 
 public class MessageServiceHibernateImpl implements MessageService {
 
-	private MessageDAO dao;
+    private MessageDAO dao;
 
-	public void setDao(MessageDAO dao) {
-		this.dao = dao;
-	}
+    public void setDao(MessageDAO dao) {
+        this.dao = dao;
+    }
 
-	@Override
-	public List<Message> getMessages() {
-		return dao.getMessages();
-	}
+    @Override
+    public List<Message> getMessages() {
+        return dao.getMessages();
+    }
 
-	public static void main(String[] args) {
-		MessageService service = SpringBeanUtil
-				.getBean(MessageServiceHibernateImpl.class);
-		List<Message> messages = service.getMessages();
-		for (Message message : messages) {
-			System.out.println(message.getId() + "," + message.getTitle() + ","
-					+ message.getContent());
-		}
-	}
+    public static void main(String[] args) {
+        // 这样写，在Spring的配置文件中，MessageService的实现类只能有一个，否则会报错
+        MessageService service = SpringBeanUtil
+            .getBean(MessageService.class);
+        List<Message> messages = service.getMessages();
+        for (Message message : messages) {
+            System.out.println(message.getId() + "," + message.getTitle() + ","
+                + message.getContent());
+        }
+    }
 }
