@@ -26,10 +26,10 @@ public class Test {
 			t.start();
 		}
 
-		long start = System.currentTimeMillis();
+		long start = System.nanoTime();
 		startGate.countDown();
 		endGate.await();
-		long end = System.currentTimeMillis();
+		long end = System.nanoTime();
 		return end - start;
 	}
 
@@ -42,7 +42,7 @@ public class Test {
 				}
 			}
 		};
-		// 最多可以跑5076个线程，再多就out of memory了
-		System.out.println(test.timeTasks(5076, runnable));
+		// 机子配置不同，可以跑的最大线程数也不同
+		System.out.println(test.timeTasks(5000, runnable));
 	}
 }
