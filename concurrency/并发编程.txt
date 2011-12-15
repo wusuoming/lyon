@@ -1,0 +1,15 @@
+synchronized关键字提供排他锁（exclusive lock），但是同步（synchronization）包含了volatile变量的使用，显式锁（explicit lock）和原子变量（atomic variable）。
+a class is thread-safe when it continues to behave correctly when accessed from multiple threads.（当一个类被多个线程同时访问时仍能够持续正确运转，它就是线程安全的）。
+线程安全的类封装好了任何需要的同步，客户端无需再次提供。
+synchronized提供的是互斥锁，即A必须等待B完成才能执行，如果B一直不释放资源，A就永远无法执行。
+synchronized提供的锁是可再入的（reentrant），即一个操作可以多次获得某个资源的锁。
+对共享的mutable（可变）变量的访问，无论是读写，都必须加锁。
+尽可能减小synchronized关键字的作用范围，能在方法块上使用就不要在方法上使用。
+同步除了提供锁之外，还提供了内存可见性，即修改对所有访问的线程都可见。
+volatile变量：保证对共享变量的修改可以传递到其他线程，但并不保证操作的原子性。
+正确发布对象：1、从静态初始化方法初始对象引用；将对象引用存储到volatile变量或者AtomicReference；将其引用存储到final变量或者正确构造的对象中；使用锁。
+设计线程安全的类：1、确定组成对象状态的成员变量；2、确定约束状态变量的不变式；3、对状态变量的并发访问确定策略；
+可以将线程安全性代理到状态变量上，如果他们相互独立。如使用ConCurrentHashMap、CopyOnWriteArrayList等。
+抛出InterruptedException的都是阻塞方法，如果该方法被中断，它会尝试尽可能早地停止阻塞。
+Synchronizer（同步器）：BlockingQueue，Semaphore，Barrier，Latch（插销，全部准备好才放行）。
+FutureTask实现Future接口，它的Task要实现Callable接口(某种意义上等同于Runnable)。Callable有三种状态：等待执行，执行中，完成。完成包括正常结束、取消和抛出异常。一旦完成，状态不会再改变。Future.get()方法会阻塞，直到Task完成，立即返回结果。FutureTask在Executor框架中使用，执行异步任务。
