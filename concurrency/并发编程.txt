@@ -1,3 +1,16 @@
+并发关注点：资源利用，公正，便利。
+线程之间共享内存和文件句柄，每个线程都拥有自己的程序计时器，堆栈和局部变量。
+向已有的线程安全类添加功能：子类化和使用客户端锁的方式都依赖了已有类的模式，假如已有类修改了API，则会失效。
+同步集合：
+Vector、HashTable、Collections.synchronizedXxx(工厂方法)
+并发集合：
+ConcurrentMap(接口)、CopyOnWriteArrayList
+5.0提供的新集合：
+Queue(接口)，ConcurrentLinkedQueue，PriorityQueue(非同步)。队列操作不阻塞。
+BlockingQueue(接口)继承Queue，当队列为空时，取出阻塞；当队列满额时，插入阻塞。
+ConcurrentSkipListMap、ConcurrentSkipListSet分别是SortedMap和SortedSet的并发版本。
+BlockingQueue的实现类有ArrayBlockingQueue、LinkedBlockingQueue，无界时，put()操作不会阻塞。
+Deque是双端队列，用于Work Stealing模式。在这种模式下，每个消费者都有自己的任务队列，处理完后可能从别的消费者的任务队列的列尾获取任务执行，从而保证每个消费者都处于繁忙状态。
 synchronized关键字提供排他锁（exclusive lock），但是同步（synchronization）包含了volatile变量的使用，显式锁（explicit lock）和原子变量（atomic variable）。
 a class is thread-safe when it continues to behave correctly when accessed from multiple threads.（当一个类被多个线程同时访问时仍能够持续正确运转，它就是线程安全的）。
 线程安全的类封装好了任何需要的同步，客户端无需再次提供。
@@ -12,4 +25,5 @@ volatile变量：保证对共享变量的修改可以传递到其他线程，但
 可以将线程安全性代理到状态变量上，如果他们相互独立。如使用ConCurrentHashMap、CopyOnWriteArrayList等。
 抛出InterruptedException的都是阻塞方法，如果该方法被中断，它会尝试尽可能早地停止阻塞。
 Synchronizer（同步器）：BlockingQueue，Semaphore，Barrier，Latch（插销，全部准备好才放行）。
-FutureTask实现Future接口，它的Task要实现Callable接口(某种意义上等同于Runnable)。Callable有三种状态：等待执行，执行中，完成。完成包括正常结束、取消和抛出异常。一旦完成，状态不会再改变。Future.get()方法会阻塞，直到Task完成，立即返回结果。FutureTask在Executor框架中使用，执行异步任务。
+FutureTask实现Future接口，它的Task要实现Callable接口(某种意义上等同于Runnable)。Callable有三种状态：等待执行，执行中，完成。
+完成包括正常结束、取消和抛出异常。一旦完成，状态不会再改变。Future.get()方法会阻塞，直到Task完成，立即返回结果。FutureTask在Executor框架中使用，执行异步任务。
