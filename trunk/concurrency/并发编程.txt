@@ -27,3 +27,14 @@ volatile变量：保证对共享变量的修改可以传递到其他线程，但
 Synchronizer（同步器）：BlockingQueue，Semaphore，Barrier，Latch（插销，全部准备好才放行）。
 FutureTask实现Future接口，它的Task要实现Callable接口(某种意义上等同于Runnable)。Callable有三种状态：等待执行，执行中，完成。
 完成包括正常结束、取消和抛出异常。一旦完成，状态不会再改变。Future.get()方法会阻塞，直到Task完成，立即返回结果。FutureTask在Executor框架中使用，执行异步任务。
+
+Executor Framework
+executor持有一个线程池，执行实现Runnable接口的Task。执行策略包括：
+1、Task将在什么线程中执行；2、Task将以什么顺序执行（FIFO，LIFO，优先级）；3、可以并发执行多少Task；
+4、有多少Task可能会等待执行（阻塞）；5、系统繁忙时，如何决定拒绝执行哪个Task，如何通知应用；
+6、Task执行前后应该执行什么动作；
+Executor的静态方法
+newFixedThreadPool：创建线程直到充满线程池，然后保持不变，除非有线程意外死亡，比如异常。
+newCachedThreadPool：无容量限制，当池比任务数多时，可以充分利用闲置的线程；如果任务继续增长，可创建新线程；
+newSingleThreadExecutor：不解释；
+newScheduledThreadPool：固定大小的线程池，提供延迟和周期性的Task执行，类似于Timer
