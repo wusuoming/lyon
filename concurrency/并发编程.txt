@@ -38,3 +38,5 @@ newFixedThreadPool：创建线程直到充满线程池，然后保持不变，�
 newCachedThreadPool：无容量限制，当池比任务数多时，可以充分利用闲置的线程；如果任务继续增长，可创建新线程；
 newSingleThreadExecutor：不解释；
 newScheduledThreadPool：固定大小的线程池，提供延迟和周期性的Task执行，类似于Timer
+
+Future执行的Task之所以是Callable而不是Runnable是因为Callable有返回值；当然，如果不需要返回值，可以Callable<Void>；
