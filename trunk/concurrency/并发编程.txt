@@ -40,3 +40,6 @@ newSingleThreadExecutor：不解释；
 newScheduledThreadPool：固定大小的线程池，提供延迟和周期性的Task执行，类似于Timer
 
 Future执行的Task之所以是Callable而不是Runnable是因为Callable有返回值；当然，如果不需要返回值，可以Callable<Void>；
+
+Java里没有直接的取消线程方法，我们可以通过设置标志位，周期性地检查，然后决定执行什么动作；更好的方法是使用
+interrupt方法。
