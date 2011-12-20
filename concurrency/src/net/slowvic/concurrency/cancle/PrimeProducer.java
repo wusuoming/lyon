@@ -23,7 +23,7 @@ public class PrimeProducer extends Thread {
                 queue.put(p = p.nextProbablePrime());
             }
             catch (InterruptedException e) {
-                System.exit(1);
+                break;
             }
         }
     }
