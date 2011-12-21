@@ -31,12 +31,12 @@ public class MergeApp {
 			} else {
 				arrayC[cDex++] = arrayB[bDex++];
 			}
-			while (aDex < sizeA) {
-				arrayC[cDex++] = arrayA[aDex++];
-			}
-			while (bDex < sizeB) {
-				arrayC[cDex++] = arrayB[bDex++];
-			}
+		}
+		while (aDex < sizeA) {
+			arrayC[cDex++] = arrayA[aDex++];
+		}
+		while (bDex < sizeB) {
+			arrayC[cDex++] = arrayB[bDex++];
 		}
 	}
 }
