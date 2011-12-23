@@ -4,8 +4,12 @@ public class BinaryTreeNode {
 	int iData;
 	BinaryTreeNode leftChild;
 	BinaryTreeNode rightChild;
-	
-	public void display(){
-		
+
+	public BinaryTreeNode(int iData) {
+		this.iData = iData;
+	}
+
+	public void display() {
+
 	}
 }
