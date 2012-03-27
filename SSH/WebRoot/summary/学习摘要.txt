@@ -131,7 +131,8 @@ PlatformTransactionManager,TransactionDefinition(隔离性、传播性),Transact
 使用<aop:config>或者<aspectj>来配置时，似乎只能使用cglib来代理。另：不要直接对DAO代理，因为引用了很多final方法。
 
 
-
+Maven：
+POM（Project Object Model，项目对象模型）
 
 
 
