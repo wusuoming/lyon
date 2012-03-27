@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/logon")
 public class LogOnController {
 
-	@RequestMapping("/hello")
-	public String hello(String userName) {
-		return null;
-	}
+    @RequestMapping("/hello")
+    public String hello(String userName) {
+        userName += "测试";
+        return "success";
+    }
 }
