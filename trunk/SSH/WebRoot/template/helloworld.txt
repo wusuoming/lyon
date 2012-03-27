@@ -1,0 +1,5 @@
+<!--: for(name in allName){ -->
+Hello,${name}
+<!--: } -->
+
+小河弯弯,${lyric}
