@@ -55,4 +55,8 @@
 	</bean>
 	
 	<bean class="net.slowvic.util.WebBeanUtil" />
+	
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	
+	</bean>
 </beans>

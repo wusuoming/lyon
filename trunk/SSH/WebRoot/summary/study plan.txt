@@ -20,7 +20,6 @@ Hibernate3.6_reference：done
 Spring揭秘：done
 Spring_reference:163
 Spring攻略：
-OSGI:
-RESTful Webservices 中文版： Representational State Transfer（表述性状态转移）：
-构建高性能WEB站点（完整版）：
-GlassFish,Ralasafe,iBatis,Concurrency in Practise,shiro
+RESTful Webservices 中文版： Representational State Transfer（表述性状态转移）：give up
+构建高性能WEB站点（完整版）：done
+GlassFish,Ralasafe,iBatis,Concurrency in Practise,shiro,OSGI
