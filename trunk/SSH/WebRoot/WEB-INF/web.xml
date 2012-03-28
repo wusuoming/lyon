@@ -27,7 +27,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
-		<url-pattern>*.spring</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- Struts配置 -->
 	<servlet>
@@ -59,6 +59,7 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+	<!-- 编码过滤器 -->
 	<filter>
 		<filter-name>CharsetFilter</filter-name>
 		<filter-class>net.slowvic.web.filter.CharsetFilter</filter-class>
@@ -75,6 +76,11 @@
 		<filter-name>CharsetFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CharsetFilter</filter-name>
+		<url-pattern>*.spring</url-pattern>
+	</filter-mapping>
+	<!-- 开启Hibernate的openSessionInView模式 -->
 	<filter>
 		<filter-name>HibernateSessionFilter</filter-name>
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -87,6 +93,7 @@
 		<filter-name>HibernateSessionFilter</filter-name>
 		<url-pattern>*.snow</url-pattern>
 	</filter-mapping>
+	<!-- 错误页面处理 -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/pages/errors/notFound.jsp</location>
