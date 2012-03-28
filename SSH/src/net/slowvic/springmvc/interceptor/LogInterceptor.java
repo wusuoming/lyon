@@ -10,24 +10,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class LogInterceptor implements HandlerInterceptor {
 
-    private static final Log LOG = LogFactory.getLog(LogInterceptor.class);
+	private static final Log LOG = LogFactory.getLog(LogInterceptor.class);
 
-    public void afterCompletion(HttpServletRequest paramHttpServletRequest,
-        HttpServletResponse paramHttpServletResponse, Object paramObject,
-        Exception paramException) throws Exception {
-        LOG.debug("渲染完成");
-    }
+	public void afterCompletion(HttpServletRequest request,
+			HttpServletResponse response, Object paramObject,
+			Exception paramException) throws Exception {
+		LOG.debug("渲染完成");
+	}
 
-    public void postHandle(HttpServletRequest paramHttpServletRequest,
-        HttpServletResponse paramHttpServletResponse, Object paramObject,
-        ModelAndView paramModelAndView) throws Exception {
-        LOG.debug("处理完成,尚未渲染");
-    }
+	public void postHandle(HttpServletRequest request,
+			HttpServletResponse response, Object paramObject,
+			ModelAndView paramModelAndView) throws Exception {
+		LOG.debug("处理完成,尚未渲染");
+	}
 
-    public boolean preHandle(HttpServletRequest paramHttpServletRequest,
-        HttpServletResponse paramHttpServletResponse, Object paramObject)
-        throws Exception {
-        LOG.debug("预处理");
-        return true;
-    }
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object paramObject) throws Exception {
+		LOG.debug("预处理");
+		return true;
+	}
 }
