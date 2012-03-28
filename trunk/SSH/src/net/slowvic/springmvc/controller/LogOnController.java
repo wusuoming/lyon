@@ -15,13 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 不同的方法，路径不要相同(尤其注意参数化后)<br>
+ * 数据转换只对请求参数有效，对其他如URL参数等无效<br>
+ * 
+ * @author xus
+ * <p>
+ */
 @Controller
 @RequestMapping("/logon")
 public class LogOnController {
 
 	private static final Log LOG = LogFactory.getLog(LogOnController.class);
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/hello/{userId}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("userId") String userId,
 			@RequestParam("prefix") String prefix,
 			@RequestHeader("user-agent") String userAgent,
@@ -39,7 +46,7 @@ public class LogOnController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/{userName}")
+	@RequestMapping(value = "/employee/{empId}")
 	public ModelAndView employee(Employee employee) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("employee");
