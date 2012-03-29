@@ -4,25 +4,36 @@
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
 	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
-		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-
-	<!-- 扫描包中类上的注解 -->
-	<context:component-scan base-package="net.slowvic.springmvc"></context:component-scan>
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
 	<!-- 自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter -->
-	<!-- <mvc:annotation-driven /> -->
+	<mvc:annotation-driven >
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- 注册这个会导致ajax请求无法执行，原因未知
+			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			 -->
+			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- 手动配置，方便添加interceptor -->
+	<!-- 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<!-- 配置interceptor -->
 		<property name="interceptors">
 			<list>
 				<bean class="net.slowvic.springmvc.interceptor.LogInterceptor" />
@@ -30,7 +41,27 @@
 		</property>
 	</bean>
 	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters" ref="converterList" />
+	</bean>
+
+	<util:list id="converterList">
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+					<value>text/html;charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+		<bean
+			class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+		<bean
+			class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+	</util:list>
+	 -->
+
+	<!-- 扫描包中类上的注解 -->
+	<context:component-scan base-package="net.slowvic.springmvc"></context:component-scan>
 
 	<!-- ViewResolver配置 -->
 	<bean
@@ -40,10 +71,19 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="maxUploadSize" value="1024000"></property>
+		<property name="maxInMemorySize" value="1024"></property>
+		<property name="uploadTempDir" value="/WEB-INF/tempDir"></property>
+	</bean>
 
 	<!-- 拦截器 -->
-	<!-- <mvc:interceptors> <bean class="net.slowvic.springmvc.interceptor.LogInterceptor"></bean> 
-		</mvc:interceptors> -->
+	<!-- 
+	<mvc:interceptors>
+		<bean class="net.slowvic.springmvc.interceptor.LogInterceptor" />
+	</mvc:interceptors>
+	 -->
 
 	<!-- 静态资源访问 -->
 	<mvc:default-servlet-handler />
