@@ -14,6 +14,7 @@ public class UploadController {
 	@RequestMapping("/file")
 	public String uploadFile(@RequestParam("file") MultipartFile file,
 			HttpSession session) {
+		// 如果需要存放在服务端，还需增加保存文件的代码
 		if (file != null)
 			System.out.println(file.getSize());
 		return "logon";
