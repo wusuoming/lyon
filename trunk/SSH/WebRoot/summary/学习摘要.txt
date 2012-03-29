@@ -134,9 +134,5 @@ PlatformTransactionManager,TransactionDefinition(隔离性、传播性),Transact
 Maven：
 POM（Project Object Model，项目对象模型）
 
-
-
-
-
-
-
+spring3MVC问题：
+注册了MappingJacksonHttpMessageConverter后，使用@RequestBody注解的方法无法执行
