@@ -17,9 +17,24 @@ function postLink(){
 		}
 	});
 }
+var cfg = 	{
+	    type: 'POST', 
+	    data: JSON.stringify({userName:'winzip',age:26}), 
+	    dataType: 'json',
+	    contentType:'application/json;charset=UTF-8',	    
+	    success: function(result) { 
+	        alert(result.success); 
+	    } 
+	};
+
+function doTestJson(actionName){
+	cfg.url = actionName;
+	$.ajax(cfg);
+}
 </script>
 </head>
 <body>
-	<a href="#" onclick="javascript:postLink()">访问@RequestBody注解</a>
+	<a href="#" onclick="javascript:postLink()">访问@RequestBody注解</a><br>
+	<a href="#" onclick="javascript:doTestJson('/json/json2')">访问HttpEntity签名方法</a><br>
 </body>
 </html>
