@@ -23,10 +23,6 @@
 					</list>
 				</property>
 			</bean>
-			<!-- 注册这个会导致ajax请求无法执行，原因未知
-			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-			 -->
-			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
