@@ -19,7 +19,7 @@ function postLink(){
 }
 var cfg = 	{
 	    type: 'POST', 
-	    data: JSON.stringify({userName:'winzip',age:26}), 
+	    data: {"userName":"winzip","age":26}, 
 	    dataType: 'json',
 	    contentType:'application/json;charset=UTF-8',	    
 	    success: function(result) { 
@@ -36,5 +36,6 @@ function doTestJson(actionName){
 <body>
 	<a href="#" onclick="javascript:postLink()">访问@RequestBody注解</a><br>
 	<a href="#" onclick="javascript:doTestJson('/json/json2')">访问HttpEntity签名方法</a><br>
+	<a href="/ask/toEmp">redirect跳转</a><br>
 </body>
 </html>

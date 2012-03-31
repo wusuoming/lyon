@@ -3,19 +3,24 @@ package net.slowvic.springmvc.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import net.slowvic.springmvc.model.Employee;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * 
  */
 @Controller
+@SessionAttributes("emp")
 @RequestMapping("/ask")
 public class HttpController {
 
@@ -41,11 +46,19 @@ public class HttpController {
 		binder.registerCustomEditor(Date.class,
 				new CustomDateEditor(sdf, false));
 	}
-	
+
 	@RequestMapping("/date")
-	public String getDate(@RequestParam("date") Date date){
+	public String getDate(@RequestParam("date") Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println(sdf.format(date));
 		return "logon";
+	}
+
+	@RequestMapping("/toEmp")
+	@ModelAttribute("emp")
+	public String rederectEmp() {
+		Employee emp = new Employee();
+		emp.setUserName("中文");
+		return "forward:/emp/add";
 	}
 }
