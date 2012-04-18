@@ -11,6 +11,7 @@ function postLink(){
 		url:"/ask/handle01",
 		type:"post",
 		data:{"userName":"中文","age":26},
+		dataType:"application/json",
 		contentType:"application/json;charset=utf-8",
 		success:function(msg){
 			alert(msg);
@@ -35,7 +36,7 @@ function doTestJson(actionName){
 </head>
 <body>
 	<a href="#" onclick="javascript:postLink()">访问@RequestBody注解</a><br>
-	<a href="#" onclick="javascript:doTestJson('/json/json2')">访问HttpEntity签名方法</a><br>
+	<a href="#" onclick="javascript:doTestJson('/json/json3')">访问ResponseBody注解方法</a><br>
 	<a href="/ask/toEmp">redirect跳转</a><br>
 </body>
 </html>
