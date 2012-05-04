@@ -1,0 +1,13 @@
+Beetl：国产模板引擎。
+单点登录（SSO，Single Sign On）
+Nutz：Web开发框架，支持RestFul
+Memcached：分布式缓存
+Comet：长连接
+Less（CSS）：一个支持css3的预处理器。
+
+2012.05 oracle编程艺术
+2012.06 mysql权威指南
+2012.07 spring3实战、struts2
+2012.08 activity5
+2012.09 maven
+待续：jMeter、Dubbo、Netty、jActor、spring-data-jpa、nginx
