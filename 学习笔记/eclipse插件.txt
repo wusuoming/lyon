@@ -1,0 +1,9 @@
+tomcatPlugin3.3
+spket1.6.x
+subclipse1.8.x -- svn1.7
+easyexplore1.0.4
+findbugs2.0.0
+jdeclipse0.3.3
+springide
+jdeclipse
+propertyeditor
