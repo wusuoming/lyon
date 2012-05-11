@@ -1,0 +1,14 @@
+分区（Partition）:
+
+create table 表名() partition by range(列名) 
+(partition part1 values less than ('B') tablespace part1_ts,
+partition part2 values less than (maxvalue) tablespace part2_ts);  -----按范围分区
+
+create table 表名() partition by hash(列名) partitions 16[分区个数];  ----- 按散列分区
+
+create table 表名() partition by list(列名) ...        ----- 列表分区
+
+subpartition 子分区
+引用分区 通过外键 partition by reference(外键名) ； 间隔分区(按时间间隔) partition by interval
+
+336页
