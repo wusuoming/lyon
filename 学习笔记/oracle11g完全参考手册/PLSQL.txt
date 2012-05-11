@@ -1,0 +1,10 @@
+declare
+  /** 变量声明和列名一样，如果是常量，加上constant，赋值符号是:=，即在等于号前加上冒号 **/
+  pi constant number(9,7) := 3.1415926;
+  radius integer(5);
+  area number(14,2);
+begin
+  radius := 6;
+  area := pi * power(radius,2);
+  insert into table_area values (radius,area);
+end;
