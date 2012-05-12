@@ -1,0 +1,7 @@
+create or replace procedure new_book(aTitle in varchar2,aPublisher in varchar2,aCategoryName in varchar2)
+as
+begin
+  insert into bookshelf(title,publisher,categoryName,rating) values(aTitle,aPublisher,aCategoryName,null)
+end;
+
+in/out/inout 表示是输入还是输出参数，或者两者都是

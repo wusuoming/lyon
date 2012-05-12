@@ -1,0 +1,8 @@
+create or replace function overdue_charges(aName in varchar2)
+  return number
+  is
+  owed_amount number(10,2)
+begin
+  select sum(*) into owed_amount from ...;
+  return (owed_amount);
+end;
