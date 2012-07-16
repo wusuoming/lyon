@@ -1,0 +1,11 @@
+delimiter $$
+create function|procedure shorten(s varchar(255),n int) returns varchar(255)
+begin
+  if isnull(s) then
+   return '';
+  elseif n<15 then
+    return left(s,n);
+  else
+    ...
+  end if;
+end$$
