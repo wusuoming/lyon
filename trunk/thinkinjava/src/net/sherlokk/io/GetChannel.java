@@ -12,7 +12,8 @@ import java.nio.channels.FileChannel;
 public class GetChannel {
 
 	public static void main(String[] args) throws IOException {
-		FileChannel fc = new FileOutputStream(
+		@SuppressWarnings("resource")
+        FileChannel fc = new FileOutputStream(
 				"C:\\Documents and Settings\\xus\\桌面\\help.txt").getChannel();
 		fc.position(fc.size());
 		fc.write(ByteBuffer.wrap("\n试试看".getBytes()));

@@ -12,7 +12,8 @@ import java.nio.channels.FileChannel;
 public class ChannelCopy {
 	private static final int BSIZE = 1024;
 
-	public static void main(String[] args) throws IOException {
+	@SuppressWarnings("resource")
+    public static void main(String[] args) throws IOException {
 		FileChannel in = new FileInputStream(
 				"C:\\Documents and Settings\\xus\\桌面\\help.txt").getChannel();
 		// 文件不存在会自动创建
