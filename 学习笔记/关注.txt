@@ -1,0 +1,10 @@
+前端：Arale
+模板：freemarker
+工作流：activiti5
+构建：maven
+性能：jMeter
+HTTP：Netty
+中间件：jActor、spring-data-jpa
+服务器：nginx
+数据库：postgreSQL
+
