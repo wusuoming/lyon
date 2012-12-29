@@ -7,4 +7,5 @@ HTTP：Netty
 中间件：jActor、spring-data-jpa
 服务器：nginx
 数据库：postgreSQL
-
+性能监控：
+缓存：
