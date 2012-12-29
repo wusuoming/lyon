@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="120 seconds">
+	<!-- appender -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder 默认配置为PatternLayoutEncoder -->
+		<encoder>
+			<pattern>
+				[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%5p]%replace(%caller{1}){'Caller\+0\s',''} - %m%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- root logger -->
+	<root level="error">
+		<appender-ref ref="stdout" />
+	</root>
+	<!-- logback self -->
+	<logger name="logback" />
+	<!-- custom logger -->
+	<logger name="net.slowvic" level="debug" additivity="false">
+		<appender-ref ref="stdout" />
+	</logger>
+</configuration>
