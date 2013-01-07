@@ -1,5 +1,8 @@
 package net.slowvic.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -21,4 +24,13 @@ public class AnnotationHelloWorldController {
         return mv;
     }
 
+    @RequestMapping(value = "/json", produces = "application/json")
+    public ModelAndView showJson() {
+        ModelAndView mv = new ModelAndView();
+        Map<String, String> model = new HashMap<String, String>();
+        model.put("msg", "HelloWorld");
+        mv.addObject("message", model);
+        mv.setViewName("hello");
+        return mv;
+    }
 }
