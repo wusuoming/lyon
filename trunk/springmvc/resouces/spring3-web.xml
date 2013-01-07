@@ -33,6 +33,7 @@
 			</list>
 		</property>
 	</bean>
+	<!-- 3.1版本后才有 -->
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
 
