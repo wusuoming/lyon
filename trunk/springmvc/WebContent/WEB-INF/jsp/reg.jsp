@@ -10,7 +10,7 @@
 <body>
     <form action="${path}/doReg" method="post">
         <input type="text" name="userName">
-        <input type="text" name="birthday">
+        <input type="text" name="birthday" value="${user.birthday}">
         <input type="password" name="password">
         <input type="submit" value="提交">
     </form>

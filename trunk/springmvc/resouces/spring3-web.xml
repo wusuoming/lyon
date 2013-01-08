@@ -63,7 +63,9 @@
 	<!-- HandlerInterceptor -->
 	<bean id="logInterceptor" class="net.slowvic.interceptor.LogInterceptor" />
 
-	<!-- 定义全局ConversionService -->
+	<bean
+		class="org.springframework.format.datetime.joda.JodaDateTimeFormatAnnotationFormatterFactory" />
+	<!-- 定义全局类型转换/解析/格式化器 -->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
@@ -73,12 +75,14 @@
 				</bean>
 			</list>
 		</property>
+		<!-- formatters也在此注册 -->
 	</bean>
 
 	<!-- 注册ConversionService -->
 	<bean id="webBindingInitializer"
 		class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
 		<property name="conversionService" ref="conversionService" />
+		<property name="validator" ref="validator" />
 	</bean>
 
 	<!-- 启用BeanValidator JSR303 -->
@@ -98,4 +102,6 @@
 			</list>
 		</property>
 	</bean>
+	<mvc:resources location="/WebContent/Web-INF/bootstrap"
+		mapping="/bootstrap/**" />
 </beans>
