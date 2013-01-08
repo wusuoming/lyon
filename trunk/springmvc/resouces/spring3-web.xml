@@ -42,7 +42,9 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="webBindingInitializer" ref="webBindingInitializer" />
+	</bean>
 
 	<!-- ViewResolver -->
 	<!-- Servlet、JSP视图解析 -->
@@ -60,4 +62,40 @@
 
 	<!-- HandlerInterceptor -->
 	<bean id="logInterceptor" class="net.slowvic.interceptor.LogInterceptor" />
+
+	<!-- 定义全局ConversionService -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="net.slowvic.converter.StringToDateConverter">
+					<property name="format" value="yyyy-MM-dd HH:mm:ss" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 注册ConversionService -->
+	<bean id="webBindingInitializer"
+		class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<property name="conversionService" ref="conversionService" />
+	</bean>
+
+	<!-- 启用BeanValidator JSR303 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- 资源文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>classpath:messagesource</value>
+			</list>
+		</property>
+	</bean>
 </beans>
