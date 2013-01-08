@@ -5,16 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="template/header.jsp" %>
-<title>Hello World</title>
+<title>register</title>
 </head>
 <body>
-    ${message}
-    ${user.userName}
-    ${other}
-    <form action="${path}/error/abc?flag=2,3" method="post">
-        <input type="text" name="other" value="${other}">
-        <input type="text" name="userName" value="${user.userName}">
-        <input type="password" name="password" value="${user.password}">
+    <form action="${path}/doReg" method="post">
+        <input type="text" name="userName">
+        <input type="text" name="birthday">
+        <input type="password" name="password">
         <input type="submit" value="提交">
     </form>
 </body>
