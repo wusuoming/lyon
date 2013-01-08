@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class User implements Serializable {
 
@@ -15,9 +16,10 @@ public class User implements Serializable {
     private String userName;
 
     @NotBlank
-    @Size(min = 6, max = 20,message="{validate.password}")
+    @Size(min = 6, max = 20, message = "密码长度应在{min}到{max}之间")
     private String password;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthday;
 
     public String getUserName() {
