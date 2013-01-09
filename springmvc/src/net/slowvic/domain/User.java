@@ -12,11 +12,11 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 8527132904005484115L;
 
-    @NotBlank
+    @NotBlank(message="{validate.username.notblank}")
     private String userName;
 
     @NotBlank
-    @Size(min = 6, max = 20, message = "密码长度应在{min}到{max}之间")
+    @Size(min = 6, max = 20, message = "{validate.password.size}")
     private String password;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")

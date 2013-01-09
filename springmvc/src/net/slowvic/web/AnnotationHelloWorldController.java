@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -78,8 +79,8 @@ public class AnnotationHelloWorldController {
     public String regist(@ModelAttribute("user") @Valid User user,
         Errors errors) {
         if (errors.hasErrors()) {
-            for (ObjectError error : errors.getAllErrors()) {
-                System.out.println(error.getCode() + ":"
+            for (FieldError error : errors.getFieldErrors()) {
+                System.out.println(error.getField() + ":"
                     + error.getDefaultMessage());
             }
         }
