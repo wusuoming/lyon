@@ -8,6 +8,9 @@
 <title>register</title>
 </head>
 <body>
+    <c:if test="${user != null}">
+    <tags:eval expression="user.birthday"></tags:eval>
+    </c:if>
     <form action="${path}/doReg" method="post">
         <input type="text" name="userName">
         <input type="text" name="birthday" value="${user.birthday}">
