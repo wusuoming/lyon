@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -57,9 +58,10 @@ public class AnnotationHelloWorldController {
     }
 
     @RequestMapping("/error/{id}")
-    public String showError(@ModelAttribute("user") User user,
+    public String showError(@ModelAttribute User user,
         @RequestParam("flag") String[] flag,
-        @PathVariable("id") String id, @RequestBody() String bodyContent,
+        @PathVariable("id") String id,
+        @RequestBody() MultiValueMap<String, String> bodyContent,
         WebRequest request, ModelMap model) {
         // User即为表单对象，SpringMVC没有Struts2中的根对象概念，因此，表单中user.userName是无法绑定的
         String other = request.getParameter("other");
@@ -89,8 +91,8 @@ public class AnnotationHelloWorldController {
 
     // @InitBinder
     // 注册本Controller专用的PropertyEditor
-    public void initBinder(WebDataBinder binder) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public void initBinderWithPropertyEditor(WebDataBinder binder) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         CustomDateEditor dateEditor = new CustomDateEditor(df, true);
         // 如果命令对象中有Date类型的属性，则使用该PropertyEditor
         binder.registerCustomEditor(Date.class, dateEditor);
