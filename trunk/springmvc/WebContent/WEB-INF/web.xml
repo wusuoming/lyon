@@ -12,7 +12,7 @@
 		<init-param>
 			<!-- 配置文件使用自定义位置 -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring3-web.xml</param-value>
+			<param-value>classpath:spring3-web-annotated.xml</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

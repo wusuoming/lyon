@@ -69,13 +69,15 @@
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
-			<list>
-				<bean class="net.slowvic.converter.StringToDateConverter">
-					<property name="format" value="yyyy-MM-dd HH:mm:ss" />
-				</bean>
-			</list>
+			<util:list>
+				<ref bean="stringToDateConverter" />
+			</util:list>
 		</property>
 		<!-- formatters也在此注册 -->
+	</bean>
+
+	<bean id="stringToDateConverter" class="net.slowvic.converter.StringToDateConverter">
+		<property name="format" value="yyyy-MM-dd" />
 	</bean>
 
 	<!-- 注册ConversionService -->
