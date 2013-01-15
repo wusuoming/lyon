@@ -9,7 +9,6 @@
 </head>
 <body>
     <c:if test="${user != null}">
-    <spring:bind path="user.birthday">${status.value}</spring:bind>
     <input type="text" value="<spring:bind path="user.birthday">${status.value}</spring:bind>" />
     </c:if>
     <form action="${path}/doReg" method="post">
@@ -35,7 +34,7 @@
                     密码：
                 </td>
                 <td>
-                    <input type="text" name="userName">
+                    <input type="password" name="password">
                 </td>
             </tr>
             <tr>

@@ -25,7 +25,16 @@
 	<context:component-scan base-package="net.slowvic.web" />
 
 	<mvc:annotation-driven
-		content-negotiation-manager="contentNegotiationManager" />
+		content-negotiation-manager="contentNegotiationManager" validator="validator">
+	</mvc:annotation-driven>
+
+	<!-- HandlerInterceptor配置 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="net.slowvic.interceptor.LogInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -37,6 +46,7 @@
 		</property>
 	</bean>
 
+	<!-- 默认的ViewResolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -46,5 +56,23 @@
 	<!-- 开启Web容器的默认处理 -->
 	<mvc:default-servlet-handler />
 
+	<!-- 不用controller，直接跳转到视图 -->
 	<mvc:view-controller path="/" view-name="reg" />
+
+	<!-- 启用BeanValidator JSR303 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- 资源文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>classpath:messagesource</value>
+			</list>
+		</property>
+	</bean>
 </beans>
