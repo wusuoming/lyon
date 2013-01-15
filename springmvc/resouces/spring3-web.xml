@@ -59,6 +59,7 @@
 	<!-- Controller -->
 	<bean name="/hello" class="net.slowvic.web.HelloWorldController" />
 	<bean class="net.slowvic.web.AnnotationHelloWorldController" />
+	<bean class="net.slowvic.web.ExampleController" />
 
 	<!-- HandlerInterceptor -->
 	<bean id="logInterceptor" class="net.slowvic.interceptor.LogInterceptor" />

@@ -6,8 +6,12 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.slowvic.converter.JsonDateSerializer;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @XmlRootElement
 public class User extends BaseEntity implements Serializable {
@@ -22,6 +26,7 @@ public class User extends BaseEntity implements Serializable {
     private String password;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date birthday;
 
     public String getUserName() {

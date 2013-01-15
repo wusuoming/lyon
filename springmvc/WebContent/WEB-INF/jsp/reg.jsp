@@ -9,13 +9,41 @@
 </head>
 <body>
     <c:if test="${user != null}">
-    <tags:eval expression="user.birthday"></tags:eval>
+    <spring:bind path="user.birthday">${status.value}</spring:bind>
+    <input type="text" value="<spring:bind path="user.birthday">${status.value}</spring:bind>" />
     </c:if>
     <form action="${path}/doReg" method="post">
-        <input type="text" name="userName">
-        <input type="text" name="birthday" value="${user.birthday}">
-        <input type="password" name="password">
-        <input type="submit" value="提交">
+        <table>
+            <tr>
+                <td>
+                    姓名：
+                </td>
+                <td>
+                    <input type="text" name="userName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    生日：
+                </td>
+                <td>
+                    <input type="text" name="birthday">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    密码：
+                </td>
+                <td>
+                    <input type="text" name="userName">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" class="btn" value="提交">
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>

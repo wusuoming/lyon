@@ -29,11 +29,22 @@
 
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-		<property name="defaultContentType" value="text/html" />
 		<property name="mediaTypes">
-			<props>
-				<prop key="xml">text/xml</prop>
-			</props>
+			<value>
+				json=application/json
+				xml=application/xml
+			</value>
 		</property>
 	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 开启Web容器的默认处理 -->
+	<mvc:default-servlet-handler />
+
+	<mvc:view-controller path="/" view-name="reg" />
 </beans>
