@@ -36,6 +36,7 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+	<!-- 配合@RequestBody、@ResponseBody、HttpMessageConverter使用，不是View -->
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="mediaTypes">
@@ -74,5 +75,19 @@
 				<value>classpath:messagesource</value>
 			</list>
 		</property>
+	</bean>
+
+	<!-- 文件上传，使用commons-fileupload组件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="maxUploadSize" value="#{1024*1024}" />
+		<property name="resolveLazily" value="false" />
+		<property name="uploadTempDir" value="WEB-INF/tempdir" />
+	</bean>
+
+	<!-- 全局异常处理 -->
+	<bean class="net.slowvic.exception.AnnotationHandlerMethodExceptionResolver">
+		<property name="defaultErrorView" value="exception" />
 	</bean>
 </beans>
