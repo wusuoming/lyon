@@ -22,6 +22,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,7 +74,7 @@ public class AnnotationHelloWorldController {
     }
 
     @RequestMapping("/reg")
-    public String toReg() {
+    public String toReg(@ModelAttribute User user) {
         return "reg";
     }
 
@@ -86,10 +87,10 @@ public class AnnotationHelloWorldController {
                     + error.getDefaultMessage());
             }
         }
-        return "reg";
+        return "login";
     }
 
-    // @InitBinder
+    @InitBinder
     // 注册本Controller专用的PropertyEditor
     public void initBinderWithPropertyEditor(WebDataBinder binder) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
