@@ -2,8 +2,12 @@ package net.slowvic.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.slowvic.web.view.PdfView;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UploadController {
@@ -46,5 +51,15 @@ public class UploadController {
     @ResponseBody
     public String showJsonError() {
         throw new RuntimeException("测试");
+    }
+
+    @RequestMapping("/pdf")
+    public ModelAndView showPdf() {
+        ModelAndView mav = new ModelAndView();
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("test", "测试");
+        mav.setView(new PdfView());
+        mav.addAllObjects(model);
+        return mav;
     }
 }

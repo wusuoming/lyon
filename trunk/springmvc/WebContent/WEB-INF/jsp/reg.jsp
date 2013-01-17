@@ -8,17 +8,14 @@
 <title>register</title>
 </head>
 <body>
-    <c:if test="${user != null}">
-    <input type="text" value="<spring:bind path="user.birthday">${status.value}</spring:bind>" />
-    </c:if>
-    <form action="${path}/doReg" method="post">
+    <form:form action="doReg" method="post" commandName="user">
         <table>
             <tr>
                 <td>
                     姓名：
                 </td>
                 <td>
-                    <input type="text" name="userName">
+                    <form:input path="userName"/>
                 </td>
             </tr>
             <tr>
@@ -26,7 +23,7 @@
                     生日：
                 </td>
                 <td>
-                    <input type="text" name="birthday">
+                    <form:input path="birthday" type="date"/>
                 </td>
             </tr>
             <tr>
@@ -34,7 +31,7 @@
                     密码：
                 </td>
                 <td>
-                    <input type="password" name="password">
+                    <form:password path="password"/>
                 </td>
             </tr>
             <tr>
@@ -43,6 +40,6 @@
                 </td>
             </tr>
         </table>
-    </form>
+    </form:form>
 </body>
 </html>
