@@ -1,5 +1,6 @@
 package net.slowvic.web.view;
 
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,11 @@ import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfView extends AbstractPdfView {
 
+    public PdfView() {
+        // 下载文件的contentType
+        setContentType("application/x-msdownload;charset=UTF-8");
+    }
+
     @Override
     protected void buildPdfDocument(Map<String, Object> model,
         Document document,
@@ -26,6 +32,10 @@ public class PdfView extends AbstractPdfView {
         Font fontChinese = new Font(bfChinese, 12, Font.NORMAL);
         document.add(new Paragraph((String) model.get("test"), fontChinese));
         document.add(new Paragraph("damn shit"));
+        // 文件名必须encode下，否则中文出不来
+        String fileName = URLEncoder.encode("示例", "UTF-8") + ".pdf";
+        String disposition = "attachment;filename=" + fileName;
+        response.setHeader("Content-disposition", disposition);
     }
 
 }
