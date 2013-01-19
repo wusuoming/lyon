@@ -15,7 +15,7 @@
         <input type="text" name="other" value="${other}">
         <input type="text" name="userName" value="${user.userName}">
         <input type="password" name="password" value="${user.password}">
-        <input type="submit" value="提交">
+        <input type="submit" class="btn" value="提交">
     </form>
 </body>
 </html>
