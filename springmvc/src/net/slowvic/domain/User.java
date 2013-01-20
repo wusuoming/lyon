@@ -1,6 +1,5 @@
 package net.slowvic.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.Size;
@@ -14,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @XmlRootElement
-public class User extends BaseEntity implements Serializable {
+public class User extends BaseEntity {
 
     private static final long serialVersionUID = 8527132904005484115L;
 
