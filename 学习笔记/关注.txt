@@ -5,7 +5,10 @@
 性能：jMeter
 HTTP：Netty
 中间件：jActor、spring-data-jpa
-服务器：nginx
+服务器：nginx(TEngine)
 数据库：postgreSQL
-性能监控：
-缓存：
+性能监控：JMX、JDK自带
+缓存：EhCache
+权限：Shiro
+
+计划：spring3、springside、
