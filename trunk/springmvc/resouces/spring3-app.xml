@@ -79,19 +79,22 @@
 		<property name="destination" ref="destination" />
 	</bean>
 
-	<!-- JMX -->
-	<!-- MBeanServer -->
-	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean" />
-
-	<bean id="mbeanExporter" class="org.springframework.jmx.export.MBeanExporter">
-		<property name="server" ref="mbeanExporter" />
-		<property name="beans">
-			<map>
-				<entry key="bean:name=hello" value-ref="hello"></entry>
-			</map>
-		</property>
+	<!-- Task && Schedule -->
+	<bean id="taskExample" class="net.slowvic.middleware.task.TaskExample">
+		<property name="taskExecutor" ref="taskExecutor" />
+		<property name="task" ref="asyncTask" />
 	</bean>
-	<bean id="hello" class="net.slowvic.middleware.jmx.HelloWorldImpl">
-		<property name="name" value="World" />
+	<bean id="asyncTask" class="net.slowvic.middleware.task.AsyncTask" />
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="keepAliveSeconds" value="3" />
+		<property name="waitForTasksToCompleteOnShutdown" value="true" />
 	</bean>
+	<!-- 支持@Scheduled和@Async注解 -->
+	<task:annotation-driven executor="springTaskExecutor"
+		scheduler="springScheduler" />
+	<task:executor id="springTaskExecutor" pool-size="5"
+		queue-capacity="20" />
+	<task:scheduler id="springScheduler" pool-size="10" />
 </beans>

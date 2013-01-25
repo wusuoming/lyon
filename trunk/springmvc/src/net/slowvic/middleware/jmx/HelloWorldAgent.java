@@ -6,6 +6,7 @@ import javax.management.MBeanServerFactory;
 import javax.management.ObjectName;
 
 import mx4j.tools.adaptor.http.HttpAdaptor;
+import mx4j.tools.adaptor.http.XSLTProcessor;
 
 public class HelloWorldAgent {
     public static void main(String[] args) throws Exception {
@@ -20,6 +21,10 @@ public class HelloWorldAgent {
         server.registerMBean(adapter, helloAdaptor);
         server.setAttribute(helloAdaptor, new Attribute("Port", 8082));
         server.setAttribute(helloAdaptor, new Attribute("Host", "localhost"));
+        XSLTProcessor processor = new XSLTProcessor();
+        ObjectName helloProcessor = new ObjectName(
+            "helloAgent:name=XSLTProcessor");
+        server.registerMBean(processor, helloProcessor);
         adapter.start();
     }
 }
