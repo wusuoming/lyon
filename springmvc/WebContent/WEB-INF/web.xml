@@ -10,6 +10,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		  classpath:spring3-CXF.xml
+		  classpath:spring3-app.xml
 		</param-value>
 	</context-param>
 	<listener>
