@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import net.slowvic.domain.User;
-import net.slowvic.middleware.task.TaskExample;
+import net.slowvic.middleware.task.AsyncTask;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ExampleController {
 
     @Autowired
-    private TaskExample task;
+    private AsyncTask asyncTask;
 
     @RequestMapping("/example01")
     @ResponseBody
@@ -60,7 +60,7 @@ public class ExampleController {
     @ResponseBody
     public User showUser() {
         User user = createUser();
-        task.doALot();
+        asyncTask.waitSoLong();
         return user;
     }
 }
