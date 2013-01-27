@@ -28,6 +28,10 @@
 		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
 	<context:component-scan base-package="net.slowvic.oxm" />
+	<context:component-scan base-package="net.slowvic.db.dao.impl" />
+	<context:component-scan base-package="net.slowvic.db.biz" />
+	<context:property-placeholder
+		file-encoding="UTF-8" location="classpath:jdbc.properties" />
 
 	<!-- OXM使用JAXB2 -->
 	<oxm:jaxb2-marshaller id="marshaller">
@@ -47,37 +51,21 @@
 	</bean>
 
 	<!-- JMS -->
-	<!-- 设置ActiveMQ的Broker，内嵌，即不使用外部独立运行的ActiveMQ -->
-	<amq:broker useJmx="false" persistent="false">
-		<amq:transportConnectors>
-			<amq:transportConnector uri="tcp://localhost:61616" />
-		</amq:transportConnectors>
-	</amq:broker>
+	<!-- 设置ActiveMQ的Broker，内嵌，即不使用外部独立运行的ActiveMQ <amq:broker useJmx="false" 
+		persistent="false"> <amq:transportConnectors> <amq:transportConnector uri="tcp://localhost:61616" 
+		/> </amq:transportConnectors> </amq:broker> -->
 
-	<!-- 设置ActiveMQ的ConnectionFactory -->
-	<amq:connectionFactory id="activeMqFac"
-		brokerURL="tcp://localhost:61616" />
-	<amq:queue id="destination" physicalName="jmsinfo" />
-
-	<bean id="jmsFac"
-		class="org.springframework.jms.connection.SingleConnectionFactory">
-		<property name="targetConnectionFactory" ref="activeMqFac" />
-	</bean>
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="jmsFac" />
-		<property name="defaultDestination" ref="destination" />
-	</bean>
-
-	<jms:listener-container concurrency="5"
-		connection-factory="activeMqFac">
-		<jms:listener destination="jmsinfo" ref="simpleMessageListener" />
-	</jms:listener-container>
-
-	<bean id="simpleMessageListener" class="net.slowvic.jms.SimpleMessageListener" />
-	<bean class="net.slowvic.jms.SpringApp">
-		<property name="jmsTemplate" ref="jmsTemplate" />
-		<property name="destination" ref="destination" />
-	</bean>
+	<!-- 设置ActiveMQ的ConnectionFactory <amq:connectionFactory id="activeMqFac" 
+		brokerURL="tcp://localhost:61616" /> <amq:queue id="destination" physicalName="jmsinfo" 
+		/> <bean id="jmsFac" class="org.springframework.jms.connection.SingleConnectionFactory"> 
+		<property name="targetConnectionFactory" ref="activeMqFac" /> </bean> <bean 
+		id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"> <property 
+		name="connectionFactory" ref="jmsFac" /> <property name="defaultDestination" 
+		ref="destination" /> </bean> <jms:listener-container concurrency="5" connection-factory="activeMqFac"> 
+		<jms:listener destination="jmsinfo" ref="simpleMessageListener" /> </jms:listener-container> 
+		<bean id="simpleMessageListener" class="net.slowvic.jms.SimpleMessageListener" 
+		/> <bean class="net.slowvic.jms.SpringApp"> <property name="jmsTemplate" 
+		ref="jmsTemplate" /> <property name="destination" ref="destination" /> </bean> -->
 
 	<!-- Task && Schedule -->
 	<bean id="taskExample" class="net.slowvic.middleware.task.TaskExample">
@@ -97,4 +85,98 @@
 	<task:executor id="springTaskExecutor" pool-size="5"
 		queue-capacity="20" />
 	<task:scheduler id="springScheduler" pool-size="10" />
+
+	<!-- 缓存 -->
+	<cache:annotation-driven mode="aspectj"
+		proxy-target-class="true" />
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<util:list>
+				<bean name="user"
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
+			</util:list>
+		</property>
+	</bean>
+	<bean id="cacheExample" class="net.slowvic.middleware.cache.CacheExample" />
+	<bean id="cacheTest" class="net.slowvic.middleware.cache.CacheTest" />
+
+	<!-- 连接数据库 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${jdbc.driverClass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="user">
+			<value>${jdbc.user}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<!--连接池中保留的最小连接数。 -->
+		<property name="minPoolSize">
+			<value>${jdbc.minPoolSize}</value>
+		</property>
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize">
+			<value>${jdbc.maxPoolSize}</value>
+		</property>
+		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize">
+			<value>${jdbc.initialPoolSize}</value>
+		</property>
+		<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime">
+			<value>${jdbc.maxIdleTime}</value>
+		</property>
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement">
+			<value>${jdbc.acquireIncrement}</value>
+		</property>
+		<!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements 属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。 
+			如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
+		<property name="maxStatements">
+			<value>${jdbc.maxStatements}</value>
+		</property>
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod">
+			<value>${jdbc.idleConnectionTestPeriod}</value>
+		</property>
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<property name="acquireRetryAttempts">
+			<value>${jdbc.acquireRetryAttempts}</value>
+		</property>
+		<!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效 保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试 
+			获取连接失败后该数据源将申明已断开并永久关闭。Default: false -->
+		<property name="breakAfterAcquireFailure">
+			<value>${jdbc.breakAfterAcquireFailure}</value>
+		</property>
+		<!--因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable 
+			等方法来提升连接测试的性能。Default: false -->
+		<property name="testConnectionOnCheckout">
+			<value>${jdbc.testConnectionOnCheckout}</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:myBatisConfig.xml" />
+		<property name="mapperLocations" value="classpath:net/slowvic/db/dao/*.xml" />
+		<property name="typeAliasesPackage"
+			value="net.slowvic.domain,net.slowvic.webservice.entity" />
+	</bean>
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory" />
+		<property name="basePackage" value="net.slowvic.*.dao" />
+	</bean>
+	<tx:annotation-driven />
+	<aop:aspectj-autoproxy />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>
