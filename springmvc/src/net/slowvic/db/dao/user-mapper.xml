@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.slowvic.db.dao.UserDao">
-	<select id="getUser" parameterType="int" resultType="User">
+	<select id="getUserById" parameterType="int" resultType="net.slowvic.domain.User">
 		select
 		userName,password,birthday from tb_user where id = #{id}
 	</select>
@@ -10,4 +10,9 @@
 		tb_user(userName,password,birthday)
 		values(#{userName},#{password},#{birthday})
 	</insert>
+	<select id="getUser" resultType="net.slowvic.domain.User">
+		select
+		userName,password,birthday from tb_user where userName = #{userName}
+		and password = #{user.password}
+	</select>
 </mapper>

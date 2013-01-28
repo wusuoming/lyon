@@ -13,7 +13,15 @@ public class UserDbTest {
 
     public static void main(String[] args) {
         ApplicationContext ctx = AppContextUtil.getApplicationContext();
-        testUserBiz(ctx);
+        testMultiInParams(ctx);
+    }
+
+    private static void testMultiInParams(ApplicationContext ctx) {
+        UserBiz biz = ctx.getBean(UserBiz.class);
+        User user = new User();
+        user.setPassword("123456");
+        User dbUser = biz.getUser("slowvic", user);
+        System.out.println(dbUser.getBirthday());
     }
 
     public static void testUserDaoImpl(ApplicationContext ctx) {
