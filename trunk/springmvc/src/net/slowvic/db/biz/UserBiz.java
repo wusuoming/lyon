@@ -15,11 +15,15 @@ public class UserBiz {
 
     @Transactional(readOnly = true)
     public User getUser(int id) {
-        return dao.getUser(id);
+        return dao.getUserById(id);
     }
 
     public void addUser(User user) {
         dao.addUser(user);
         // throw new RuntimeException("测试回滚");
+    }
+
+    public User getUser(String userName, User user) {
+        return dao.getUser(userName, user);
     }
 }

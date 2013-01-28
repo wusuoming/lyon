@@ -29,6 +29,6 @@ public class UserDaoImpl {
 
     @Transactional(readOnly = true)
     public User getUser(int id) {
-        return dao.getUser(id);
+        return dao.getUserById(id);
     }
 }
