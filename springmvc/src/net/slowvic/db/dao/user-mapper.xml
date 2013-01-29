@@ -15,4 +15,16 @@
 		userName,password,birthday from tb_user where userName = #{userName}
 		and password = #{user.password}
 	</select>
+	<select id="findAllUsers" parameterType="org.noo.pagination.page.Page"
+		resultType="net.slowvic.domain.User">
+		select userName,password,birthday from tb_user
+	</select>
+	<select id="findAllUsersByAnnotation" parameterType="net.slowvic.db.page.PageInfo"
+		resultType="net.slowvic.domain.User">
+		select userName,password,birthday from tb_user
+	</select>
+	<select id="findAllUsersByAnnotationAndParam" resultType="net.slowvic.domain.User">
+		select
+		userName,password,birthday from tb_user where userName = #{userName}
+	</select>
 </mapper>

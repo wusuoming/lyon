@@ -4,4 +4,10 @@
 	<settings>
 		<setting name="lazyLoadingEnabled" value="false" />
 	</settings>
-</configuration>
+	<plugins>
+		<plugin interceptor="org.noo.pagination.interceptor.PaginationInterceptor">
+			<property name="dialectClass" value="org.noo.pagination.dialect.db.OracleDialect" />
+			<property name="sqlPattern" value=".*findAll.*" />
+		</plugin>
+	</plugins>
+</configuration>  
