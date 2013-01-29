@@ -2,6 +2,8 @@ package net.slowvic.test;
 
 import java.io.IOException;
 
+import net.slowvic.domain.User;
+
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -13,7 +15,7 @@ public class ResouceTest {
         ClassNotFoundException {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = resolver
-            .getResources("net/slowvic/webservice/entity/*");
+            .getResources("classpath:net.slowvic.domain.*");
         ClassLoader classLoader = ResouceTest.class.getClassLoader();
         TypeAliasRegistry registry = new TypeAliasRegistry();
         for (Resource resource : resources) {
@@ -27,6 +29,7 @@ public class ResouceTest {
                 registry.registerAlias(clz);
             }
         }
+        registry.registerAlias(User.class);
     }
 
 }

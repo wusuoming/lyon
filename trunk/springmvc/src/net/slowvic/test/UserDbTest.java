@@ -1,22 +1,37 @@
 package net.slowvic.test;
 
 import java.util.Date;
+import java.util.List;
 
 import net.slowvic.db.biz.UserBiz;
 import net.slowvic.db.dao.impl.UserDaoImpl;
+import net.slowvic.db.page.PageInfo;
 import net.slowvic.domain.User;
 import net.slowvic.util.AppContextUtil;
 
+import org.noo.pagination.page.Page;
+import org.noo.pagination.page.Pagination;
 import org.springframework.context.ApplicationContext;
 
 public class UserDbTest {
 
     public static void main(String[] args) {
         ApplicationContext ctx = AppContextUtil.getApplicationContext();
-        testMultiInParams(ctx);
+        testPagination(ctx);
     }
 
-    private static void testMultiInParams(ApplicationContext ctx) {
+    public static void testPagination(ApplicationContext ctx) {
+        UserBiz biz = ctx.getBean(UserBiz.class);
+        Page page = new Pagination();
+        page.setPageSize(2);
+        PageInfo<User> pageInfo = new PageInfo<User>(page);
+        List<User> users = biz.getAllUsers(pageInfo, "slowvic");
+        for (User user : users) {
+            System.out.println(user.getUserName());
+        }
+    }
+
+    public static void testMultiInParams(ApplicationContext ctx) {
         UserBiz biz = ctx.getBean(UserBiz.class);
         User user = new User();
         user.setPassword("123456");

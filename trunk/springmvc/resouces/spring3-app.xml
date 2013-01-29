@@ -159,19 +159,20 @@
 			<value>${jdbc.testConnectionOnCheckout}</value>
 		</property>
 	</bean>
-	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sessionFactory" class="org.mybatis.spring.extend.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:myBatisConfig.xml" />
-		<property name="mapperLocations" value="classpath:net/slowvic/db/dao/*.xml" />
-		<property name="typeAliasesPackage"
-			value="net.slowvic.domain,net.slowvic.webservice.entity" />
+		<!-- 支持通配符，可配置多个，逗号、换行符都可以作为分隔符号 -->
+		<property name="extTypeAliasesPackage" value="net/slowvic/domain,net/slowvic/*/entity" />
+		<property name="mapperPackage" value="net/slowvic/*/dao" />
 	</bean>
 	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory" />
-		<property name="basePackage" value="net.slowvic.*.dao,net.slowvic.webservice.entity" />
+		<!-- 支持通配符，可配置多个，逗号、换行符都可以作为分隔符号 -->
+		<property name="basePackage" value="net/slowvic/*/dao" />
 	</bean>
 	<tx:annotation-driven />
 	<aop:aspectj-autoproxy />
