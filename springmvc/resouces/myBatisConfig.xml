@@ -6,7 +6,7 @@
 	</settings>
 	<plugins>
 		<plugin interceptor="org.noo.pagination.interceptor.PaginationInterceptor">
-			<property name="dialectClass" value="org.noo.pagination.dialect.db.OracleDialect" />
+			<property name="dialectClass" value="org.noo.pagination.dialect.db.MySQLDialect" />
 			<property name="sqlPattern" value=".*findAll.*" />
 		</plugin>
 	</plugins>

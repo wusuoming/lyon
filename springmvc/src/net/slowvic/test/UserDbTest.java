@@ -17,6 +17,7 @@ public class UserDbTest {
 
     public static void main(String[] args) {
         ApplicationContext ctx = AppContextUtil.getApplicationContext();
+        testUserBiz(ctx);
         testPagination(ctx);
     }
 

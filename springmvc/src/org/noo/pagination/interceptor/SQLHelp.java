@@ -96,7 +96,7 @@ public class SQLHelp {
     public static int getCount(final String sql, final Connection connection,
                                final MappedStatement mappedStatement, final Object parameterObject,
                                final BoundSql boundSql) throws SQLException {
-        final String countSql = "select count(1) from (" + sql + ")";
+        final String countSql = "select count(1) from (" + sql + ") temp_count where 1 = 1";
         PreparedStatement countStmt = null;
         ResultSet rs = null;
         try {
