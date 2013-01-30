@@ -25,7 +25,7 @@ public class UserBiz {
 
     public void addUser(User user) {
         dao.addUser(user);
-        // throw new RuntimeException("测试回滚");
+        throw new RuntimeException("测试回滚");
     }
 
     public User getUser(String userName, User user) {
