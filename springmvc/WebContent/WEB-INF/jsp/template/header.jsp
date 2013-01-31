@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${path}/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${path}/bootstrap/css/bootstrap-responsive.min.css">
-<script type="text/javascript" src="${path}/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${path}/static/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/static/bootstrap/css/bootstrap-responsive.min.css">
+<script type="text/javascript" src="${path}/static/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="${path}/static/bootstrap/js/bootstrap.min.js"></script>

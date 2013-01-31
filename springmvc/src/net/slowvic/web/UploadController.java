@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import net.slowvic.web.view.PdfView;
 
 import org.springframework.http.HttpStatus;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -27,8 +26,12 @@ public class UploadController {
     }
 
     @RequestMapping("/doUpload")
+    @ResponseBody
     public String doUpload(@RequestParam("uploadFile") MultipartFile file,
-        HttpServletRequest request) throws IllegalStateException, IOException {
+        DefaultMultipartHttpServletRequest request)
+        throws IllegalStateException, IOException {
+        String uploadToken = request.getParameter("uploadToken");
+        System.out.println(uploadToken);
         String saveDirectory = request.getSession().getServletContext()
             .getRealPath("/WEB-INF/upload");
         File directory = new File(saveDirectory);
@@ -38,7 +41,7 @@ public class UploadController {
         File saveFile = new File(saveDirectory + "/"
             + file.getOriginalFilename());
         file.transferTo(saveFile);
-        return "upload";
+        return uploadCallBack("upload succeed.");
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "测试下")
@@ -61,5 +64,24 @@ public class UploadController {
         mav.setView(new PdfView());
         mav.addAllObjects(model);
         return mav;
+    }
+
+    private String uploadCallBack(String msg) {
+        StringBuilder html = new StringBuilder();
+        html.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n");
+        html.append("<html>\n");
+        html.append("<head>\n");
+        html.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+        html.append("<title>upload callback</title>\n");
+        html.append("<script type=\"text/javascript\">\n");
+        html.append("window.parent.uploadCallBack(\"");
+        html.append(msg);
+        html.append("\")\n");
+        html.append("</script>\n");
+        html.append("</head>\n");
+        html.append("<body>\n");
+        html.append("</body>\n");
+        html.append("</html>\n");
+        return html.toString();
     }
 }
