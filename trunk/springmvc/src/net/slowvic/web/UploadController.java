@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import net.slowvic.web.view.PdfView;
 
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,7 @@ public class UploadController {
         File saveFile = new File(saveDirectory + "/"
             + file.getOriginalFilename());
         file.transferTo(saveFile);
-        return uploadCallBack("upload succeed.");
+        return uploadCallBack("上传成功.");
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "测试下")
@@ -64,6 +66,17 @@ public class UploadController {
         mav.setView(new PdfView());
         mav.addAllObjects(model);
         return mav;
+    }
+
+    @RequestMapping("/checkUploadPercent")
+    @ResponseBody
+    public String checkUploadPercent(
+        @RequestParam("uploadToken") String uploadToken, HttpSession session) {
+        String uploadPercent = (String) session.getAttribute(uploadToken);
+        if ("100%".equals(uploadPercent)) {
+            session.removeAttribute(uploadToken);
+        }
+        return uploadPercent;
     }
 
     private String uploadCallBack(String msg) {

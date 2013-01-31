@@ -24,22 +24,22 @@ public class ListenedCommonsMultipartResolver extends CommonsMultipartResolver {
     protected MultipartParsingResult parseRequest(HttpServletRequest request)
         throws MultipartException {
         String encoding = determineEncoding(request);
-        FileUpload fileUpload = prepareFileUpload(encoding);
+        final FileUpload fileUpload = prepareFileUpload(encoding);
+        final String uploadToken = request.getParameter("uploadToken");
+        // 插入监听
+        final HttpSession session = request.getSession();
+
+        fileUpload.setProgressListener(new ProgressListener() {
+            public void update(long pBytesRead, long pContentLength,
+                int pItems) {
+                int percent = (int) (((float) pBytesRead / (float) pContentLength) * 100);
+                session.setAttribute(uploadToken, percent + "%");
+            }
+        });
         try {
             @SuppressWarnings("unchecked")
             List<FileItem> fileItems = ((ServletFileUpload) fileUpload)
                 .parseRequest(request);
-            final String uploadToken = getParametersMap(fileItems, encoding)
-                .get("uploadToken");
-            // 插入监听
-            final HttpSession session = request.getSession();
-            fileUpload.setProgressListener(new ProgressListener() {
-                public void update(long pBytesRead, long pContentLength,
-                    int pItems) {
-                    int percent = (int) (((float) pBytesRead / (float) pContentLength) * 100);
-                    session.setAttribute(uploadToken, percent + "%");
-                }
-            });
             return parseFileItems(fileItems, encoding);
         }
         catch (FileUploadBase.SizeLimitExceededException ex) {
@@ -52,7 +52,7 @@ public class ListenedCommonsMultipartResolver extends CommonsMultipartResolver {
         }
     }
 
-    private Map<String, String> getParametersMap(List<FileItem> fileItems,
+    public Map<String, String> getParametersMap(List<FileItem> fileItems,
         String encoding) {
         Map<String, String> params = new HashMap<String, String>();
         for (FileItem fileItem : fileItems) {
