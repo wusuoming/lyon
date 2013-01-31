@@ -5,10 +5,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="template/header.jsp" %>
+
 <title>upload file</title>
+<script type="text/javascript">
+$(function(){
+	alert("h");
+	genUploadToken();
+})
+function uploadCallBack(msg){
+	$("input[type=file]").val("");
+	$("#uploadMsg").text(msg);
+}
+function genUploadToken(){
+	$("#uploadToken").val("哈哈");
+}
+</script>
 </head>
 <body>
-    <form action="${path}/doUpload" method="post" enctype="multipart/form-data">
+    <form action="${path}/doUpload" method="post" enctype="multipart/form-data" target="formTarget">
+        <input type="hidden" id="uploadToken" name="uploadToken" value="123456789"/>
         <table>
             <tr>
                 <td>
@@ -16,6 +31,7 @@
                 </td>
                 <td>
                     <input type="file" class="btn" name="uploadFile"/>
+                    <span id="uploadMsg"></span>
                 </td>
             </tr>
             <tr>
@@ -25,5 +41,6 @@
             </tr>
         </table>
     </form>
+    <iframe name="formTarget" style="display:none;"></iframe>
 </body>
 </html>
