@@ -8,22 +8,40 @@
 
 <title>upload file</title>
 <script type="text/javascript">
-$(function(){
-	alert("h");
-	genUploadToken();
-})
+var checkUploadObj = null;
 function uploadCallBack(msg){
-	$("input[type=file]").val("");
-	$("#uploadMsg").text(msg);
+    $("input[type=file]").val("");
+    // $("#uploadMsg").text(msg);
 }
 function genUploadToken(){
-	$("#uploadToken").val("哈哈");
+    if(!$("input[type=file]").val()){
+        alert("请选择文件");
+        return false;
+    }
+    var actionPath = "${path}/doUpload";
+    var uploadToken = new Date().getTime();
+    $("#frm").attr("action",actionPath+"?uploadToken="+uploadToken);
+    $("#uploadToken").val(uploadToken);
+    checkUploadObj = window.setInterval(checkUploadPercent, 1000);
+    return true;
+}
+function checkUploadPercent(){
+    $.post("${path}/checkUploadPercent?r="+new Date().getTime(),{"uploadToken":$("#uploadToken").val()},function(msg){
+    	if(msg=="sizeExceeded"){
+    		$("#uploadMsg").text("上传文件超过大小");
+    	}else{
+    		$("#uploadMsg").text(msg);
+    	}
+        if(msg=="sizeExceeded" || msg=="100%"){
+            window.clearInterval(checkUploadObj);
+        }
+    },"text");
 }
 </script>
 </head>
 <body>
-    <form action="${path}/doUpload" method="post" enctype="multipart/form-data" target="formTarget">
-        <input type="hidden" id="uploadToken" name="uploadToken" value="123456789"/>
+    <form id="frm" action="" method="post" enctype="multipart/form-data" target="formTarget" onsubmit="return genUploadToken()">
+        <input type="hidden" id="uploadToken" name="uploadToken"/>
         <table>
             <tr>
                 <td>
