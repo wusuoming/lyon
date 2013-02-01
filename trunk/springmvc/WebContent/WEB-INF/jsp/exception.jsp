@@ -6,9 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="template/header.jsp"%>
 <title>异常</title>
+<script type="text/javascript">
+$(function(){
+	if("${uploadEx}"=="true"){
+		window.parent.uploadCallBack($("#err").text());
+	}
+})
+</script>
 </head>
 <body>
-	<div>
+	<div id="err">
 		<spring:message code="${ex}" text="未知错误"></spring:message>
 	</div>
 </body>

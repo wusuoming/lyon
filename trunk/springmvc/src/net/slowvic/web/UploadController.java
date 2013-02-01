@@ -43,7 +43,7 @@ public class UploadController {
         File saveFile = new File(saveDirectory + "/"
             + file.getOriginalFilename());
         file.transferTo(saveFile);
-        return uploadCallBack("上传成功.");
+        return uploadCallBack("100");
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "测试下")
@@ -72,11 +72,14 @@ public class UploadController {
     @ResponseBody
     public String checkUploadPercent(
         @RequestParam("uploadToken") String uploadToken, HttpSession session) {
-        String uploadPercent = (String) session.getAttribute(uploadToken);
-        if ("100%".equals(uploadPercent)) {
+        int uploadPercent = 0;
+        if (session.getAttribute(uploadToken) != null) {
+            uploadPercent = (Integer) session.getAttribute(uploadToken);
+        }
+        if (uploadPercent == 100) {
             session.removeAttribute(uploadToken);
         }
-        return uploadPercent;
+        return uploadPercent + "";
     }
 
     private String uploadCallBack(String msg) {

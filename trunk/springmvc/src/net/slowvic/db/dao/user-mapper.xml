@@ -12,7 +12,7 @@
 	</insert>
 	<select id="getUser" resultType="net.slowvic.domain.User">
 		select
-		userName,password,birthday from tb_user where userName = #{userName}
+		userName,password,birthday from tb_user where userName like #{userName}
 		and password = #{user.password}
 	</select>
 	<select id="findAllUsers" parameterType="org.noo.pagination.page.Page"

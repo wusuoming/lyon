@@ -5,13 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="template/header.jsp" %>
-
+<script type="text/javascript" src="${path}/progressbar/js/jquery.progressbar.min.js"></script>
 <title>upload file</title>
 <script type="text/javascript">
 var checkUploadObj = null;
+var callbackMsg = null;
 function uploadCallBack(msg){
-    $("input[type=file]").val("");
-    // $("#uploadMsg").text(msg);
+    callbackMsg = msg;
+    var uploadFile = document.getElementById("uploadFile");
+    uploadFile.outerHTML += "";
 }
 function genUploadToken(){
     if(!$("input[type=file]").val()){
@@ -22,17 +24,18 @@ function genUploadToken(){
     var uploadToken = new Date().getTime();
     $("#frm").attr("action",actionPath+"?uploadToken="+uploadToken);
     $("#uploadToken").val(uploadToken);
+    $("#uploadMsg").progressBar({barImage:'progressbar/images/progressbg_green.gif'});
     checkUploadObj = window.setInterval(checkUploadPercent, 1000);
     return true;
 }
 function checkUploadPercent(){
     $.post("${path}/checkUploadPercent?r="+new Date().getTime(),{"uploadToken":$("#uploadToken").val()},function(msg){
-    	if(msg=="sizeExceeded"){
-    		$("#uploadMsg").text("上传文件超过大小");
+    	if(callbackMsg && callbackMsg !="100"){
+    		$("#uploadMsg").text(callbackMsg);
     	}else{
-    		$("#uploadMsg").text(msg);
+    		$("#uploadMsg").progressBar(msg * 1);
     	}
-        if(msg=="sizeExceeded" || msg=="100%"){
+        if(callbackMsg || msg=="100"){
             window.clearInterval(checkUploadObj);
         }
     },"text");
@@ -48,12 +51,12 @@ function checkUploadPercent(){
                     选择文件：
                 </td>
                 <td>
-                    <input type="file" class="btn" name="uploadFile"/>
+                    <input type="file" class="btn" id="uploadFile" name="uploadFile"/>
                     <span id="uploadMsg"></span>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="right">
+                <td colspan="2" align="left">
                     <input type="submit" class="btn" value="提交">
                 </td>
             </tr>
