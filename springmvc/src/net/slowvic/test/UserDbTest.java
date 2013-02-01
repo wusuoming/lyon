@@ -17,8 +17,7 @@ public class UserDbTest {
 
     public static void main(String[] args) {
         ApplicationContext ctx = AppContextUtil.getApplicationContext();
-        testUserBiz(ctx);
-        testPagination(ctx);
+        testMultiInParams(ctx);
     }
 
     public static void testPagination(ApplicationContext ctx) {
@@ -36,7 +35,7 @@ public class UserDbTest {
         UserBiz biz = ctx.getBean(UserBiz.class);
         User user = new User();
         user.setPassword("123456");
-        User dbUser = biz.getUser("slowvic", user);
+        User dbUser = biz.getUser("slowvic%", user);
         System.out.println(dbUser.getBirthday());
     }
 

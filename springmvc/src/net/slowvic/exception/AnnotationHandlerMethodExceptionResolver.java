@@ -35,9 +35,7 @@ public class AnnotationHandlerMethodExceptionResolver implements
         HttpServletRequest request, HttpServletResponse response,
         Object handler, Exception ex) {
         // 一定要把异常记录下来，否则就被吞了。
-        if (LOG.isErrorEnabled()) {
-            LOG.error(ex);
-        }
+        LOG.error(ex);
         if (handler != null) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
@@ -55,6 +53,11 @@ public class AnnotationHandlerMethodExceptionResolver implements
     private ModelAndView handlePageException(HttpServletRequest request,
         Exception ex) {
         ModelAndView mav = new ModelAndView();
+        // 上传文件错误特别处理
+        LOG.debug(request.getRequestURI());
+        if (request.getRequestURI().endsWith("/doUpload")) {
+            mav.addObject("uploadEx", true);
+        }
         mav.addObject("ex", ex.getClass().getName());
         mav.setViewName(defaultErrorView);
         return mav;

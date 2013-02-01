@@ -33,7 +33,7 @@ public class ListenedCommonsMultipartResolver extends CommonsMultipartResolver {
             public void update(long pBytesRead, long pContentLength,
                 int pItems) {
                 int percent = (int) (((float) pBytesRead / (float) pContentLength) * 100);
-                session.setAttribute(uploadToken, percent + "%");
+                session.setAttribute(uploadToken, percent);
             }
         });
         try {
