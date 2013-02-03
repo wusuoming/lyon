@@ -8,6 +8,8 @@ import net.slowvic.domain.User;
 
 import org.noo.pagination.page.Page;
 import org.noo.pagination.page.Pagination;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +20,11 @@ public class UserBiz {
     @Autowired
     private UserDao dao;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserBiz.class);
+
     @Transactional(readOnly = true)
     public User getUser(int id) {
+        logger.debug("测试logback");
         return dao.getUserById(id);
     }
 

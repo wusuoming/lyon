@@ -17,7 +17,12 @@ public class UserDbTest {
 
     public static void main(String[] args) {
         ApplicationContext ctx = AppContextUtil.getApplicationContext();
-        testMultiInParams(ctx);
+        testLogback(ctx);
+    }
+
+    public static void testLogback(ApplicationContext ctx) {
+        UserBiz biz = ctx.getBean(UserBiz.class);
+        biz.getUser(1);
     }
 
     public static void testPagination(ApplicationContext ctx) {
