@@ -1,4 +1,0 @@
-css：kissy、bootstrap
-JS图表Highcharts、表格jqGrid、树zTree、数字输入框autoNumeric
-UI库：YUI(http://yuilibrary.com)
-JS MVC：backbone
