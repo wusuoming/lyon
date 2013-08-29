@@ -1,0 +1,13 @@
+函数式接口：只提供了一个方法的接口
+
+在实现这种接口时，完整的写一个类显得非常冗余，即使通过匿名内部类也是如此，比如，使用一个线程：
+
+new Thread(new Runnable(){
+    public void run(){
+        ...
+    }
+}).start();
+
+换成lambda表达式： new Thread(() -> {...}).start();
+
+lambda表达式基本形式：(参数列表) -> {代码块}       (int x,int y) -> {return x+y;}
