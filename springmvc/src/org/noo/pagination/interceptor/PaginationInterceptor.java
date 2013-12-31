@@ -40,7 +40,13 @@ public class PaginationInterceptor extends BaseInterceptor {
         if (mappedStatement.getId().matches(_SQL_PATTERN)) { // 拦截需要分页的SQL
             Object parameter = invocation.getArgs()[1];
             BoundSql boundSql = mappedStatement.getBoundSql(parameter);
-            String originalSql = boundSql.getSql().trim();
+            String originalSql = "";
+            if (boundSql != null) {
+                originalSql = boundSql.getSql();
+            }
+            if (originalSql != null) {
+                originalSql = originalSql.trim();
+            }
             Object parameterObject = boundSql.getParameterObject();
             if (boundSql == null || boundSql.getSql() == null
                 || "".equals(boundSql.getSql()))
