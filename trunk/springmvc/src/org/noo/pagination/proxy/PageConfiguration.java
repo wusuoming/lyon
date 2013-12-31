@@ -1,6 +1,5 @@
 package org.noo.pagination.proxy;
 
-import org.apache.ibatis.binding.MapperRegistry;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,7 +13,8 @@ import org.apache.ibatis.session.SqlSession;
  * @since JDK 1.5
  */
 public class PageConfiguration extends Configuration {
-    protected MapperRegistry mapperRegistry = new PaginationMapperRegistry(this);
+    // protected MapperRegistry mapperRegistry = new
+    // PaginationMapperRegistry(this);
 
     @Override
     public <T> void addMapper(Class<T> type) {

@@ -29,6 +29,9 @@ public class ExampleController {
         if (StringUtils.isBlank(user.getUserName())) {
             user = (User) request.getAttribute("user");
         }
+        else {
+            user = new User();
+        }
         // 使用了@ResponseBody，输出通过StringHttpMessageConverter直接输出到客户端
         return "Hello,World!";
     }
